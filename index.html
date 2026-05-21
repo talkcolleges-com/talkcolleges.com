@@ -199,12 +199,23 @@
 
     .carousel-track { position: relative; }
 
-    .carousel-slide {
-      display: none;
-      position: relative;
-    }
+   .carousel-slide {
+  display: none;
+  position: absolute;
+  top: 0; left: 0; width: 100%;
+  animation: none;
+}
 
-    .carousel-slide.active { display: block; }
+.carousel-slide.active {
+  display: block;
+  position: relative;
+  animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
 
     .carousel-slide img {
       width: 100%;
