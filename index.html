@@ -794,7 +794,10 @@
 
 const carousel = document.querySelector('.carousel');
 carousel.addEventListener('mouseenter', () => clearInterval(timer));
-carousel.addEventListener('mouseleave', () => resetTimer());
+carousel.addEventListener('mouseleave', () => {
+  updateIndicators(current);
+  resetTimer();
+});
   </script>
 
 </body>
