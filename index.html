@@ -303,8 +303,13 @@
     }
 
     .indicator.active .indicator-fill {
-      animation: fillBar 4s linear forwards;
-    }
+  animation: fillBar 4s linear forwards;
+  animation-play-state: running;
+}
+
+.carousel:hover .indicator.active .indicator-fill {
+  animation-play-state: paused;
+}
 
     @keyframes fillBar {
       from { width: 0%; }
