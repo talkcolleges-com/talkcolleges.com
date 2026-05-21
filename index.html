@@ -13,12 +13,11 @@
 
     :root {
       --navy:  #4D107A;
-  --cream: #f9f5ff;
-  --gold:  #D1B365;
-  --muted: #7a6b8d;
-  --white: #ffffff;
-  --border: #e2d5f0;
-
+      --cream: #f9f5ff;
+      --gold:  #D1B365;
+      --muted: #7a6b8d;
+      --white: #ffffff;
+      --border: #e2d5f0;
     }
 
     html { scroll-behavior: smooth; }
@@ -190,18 +189,6 @@
     .av3 { background: #2a5298; }
     .av4 { background: #8b1a1a; }
 
-    .badge {
-      font-size: 0.68rem;
-      font-weight: 500;
-      padding: 0.2rem 0.55rem;
-      border-radius: 20px;
-      white-space: nowrap;
-    }
-    .badge-blue { background: #eef2ff; color: #3730a3; }
-    .badge-red  { background: #fff1f1; color: #991b1b; }
-    .badge-green { background: #f0fdf4; color: #166534; }
-    .badge-gold  { background: #fefce8; color: #854d0e; }
-
     /* ── CAROUSEL ── */
     .carousel {
       position: relative;
@@ -254,24 +241,62 @@
     .carousel-btn.prev { left: 12px; }
     .carousel-btn.next { right: 12px; }
 
-    .carousel-dots {
+    /* ── PROGRESS INDICATORS ── */
+    .carousel-indicators {
       position: absolute;
       bottom: 14px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
+      align-items: center;
       gap: 6px;
       z-index: 10;
     }
 
-    .dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.5);
+    .indicator {
+      height: 6px;
+      border-radius: 3px;
       cursor: pointer;
-      transition: background 0.2s;
+      overflow: hidden;
+      transition: width 0.3s ease;
+      background: rgba(255,255,255,0.35);
     }
-    .dot.active { background: white; }
+
+    /* done = small dot */
+    .indicator.done {
+      width: 6px;
+    }
+
+    /* active = progress bar */
+    .indicator.active {
+      width: 40px;
+      position: relative;
+    }
+
+    /* upcoming = small dot */
+    .indicator.upcoming {
+      width: 6px;
+    }
+
+    .indicator-fill {
+      height: 100%;
+      width: 0%;
+      background: white;
+      border-radius: 3px;
+    }
+
+    .indicator.done .indicator-fill {
+      width: 100%;
+    }
+
+    .indicator.active .indicator-fill {
+      animation: fillBar 4s linear forwards;
+    }
+
+    @keyframes fillBar {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
 
     /* ── STATS ── */
     .stats-bar {
@@ -489,7 +514,7 @@
 
   <!-- NAV -->
   <nav>
-  <a href="#" class="logo" style="font-size:1.7rem;"><img src="TalkCollegesIconTransparent.png" style="height:68px;vertical-align:middle;margin-right:6px;" />Talk<span>Colleges</span></a>
+    <a href="#" class="logo" style="font-size:1.7rem;"><img src="TalkCollegesIconTransparent.png" style="height:68px;vertical-align:middle;margin-right:6px;" />Talk<span>Colleges</span></a>
     <ul>
       <li><a href="#how-it-works">How it works</a></li>
       <li><a href="#advisors">Advisors</a></li>
@@ -533,12 +558,7 @@
         </div>
         <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#8592;</button>
         <button class="carousel-btn next" onclick="moveCarousel(1)">&#8594;</button>
-        <div class="carousel-dots">
-          <span class="dot active" onclick="goToSlide(0)"></span>
-          <span class="dot" onclick="goToSlide(1)"></span>
-          <span class="dot" onclick="goToSlide(2)"></span>
-          <span class="dot" onclick="goToSlide(3)"></span>
-        </div>
+        <div class="carousel-indicators" id="indicators"></div>
       </div>
     </div>
   </section>
@@ -696,21 +716,63 @@
   </footer>
 
   <script>
-    let current = 0;
     const slides = document.querySelectorAll('.carousel-slide');
-    const dots = document.querySelectorAll('.dot');
+    const indicatorContainer = document.getElementById('indicators');
+    const DURATION = 4000;
+    let current = 0;
+    let timer = null;
+
+    // Build indicators
+    slides.forEach((_, i) => {
+      const ind = document.createElement('div');
+      ind.className = 'indicator ' + (i === 0 ? 'active' : 'upcoming');
+      ind.innerHTML = '<div class="indicator-fill"></div>';
+      ind.addEventListener('click', () => goToSlide(i));
+      indicatorContainer.appendChild(ind);
+    });
+
+    function getIndicators() {
+      return document.querySelectorAll('.indicator');
+    }
+
+    function updateIndicators(newIndex) {
+      const indicators = getIndicators();
+      indicators.forEach((ind, i) => {
+        ind.className = 'indicator';
+        if (i < newIndex) {
+          ind.classList.add('done');
+        } else if (i === newIndex) {
+          ind.classList.add('active');
+          // restart animation by replacing the fill element
+          const fill = ind.querySelector('.indicator-fill');
+          const newFill = fill.cloneNode(true);
+          ind.replaceChild(newFill, fill);
+        } else {
+          ind.classList.add('upcoming');
+        }
+      });
+    }
 
     function goToSlide(n) {
       slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
       current = (n + slides.length) % slides.length;
       slides[current].classList.add('active');
-      dots[current].classList.add('active');
+      updateIndicators(current);
+      resetTimer();
     }
 
-    function moveCarousel(dir) { goToSlide(current + dir); }
+    function moveCarousel(dir) {
+      goToSlide(current + dir);
+    }
 
-    setInterval(() => moveCarousel(1), 4000);
+    function resetTimer() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(() => moveCarousel(1), DURATION);
+    }
+
+    // Start
+    updateIndicators(0);
+    resetTimer();
   </script>
 
 </body>
