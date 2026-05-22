@@ -317,6 +317,14 @@
     }
 
     /* ── OUR PROCESS ── */
+    .section-process {
+      padding: 6rem 6%;
+      background: var(--navy);
+    }
+
+    .section-process .section-title { color: var(--white); }
+    .section-process .section-sub   { color: rgba(255,255,255,0.6); }
+
     .steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -324,25 +332,25 @@
     }
 
     .step {
-      background: var(--cream);
+      background: rgba(255,255,255,0.07);
       border-radius: 10px;
       padding: 2rem 1.7rem;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255,255,255,0.15);
       transition: transform 0.2s, box-shadow 0.2s;
       position: relative;
     }
-    .step:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(15,31,56,0.1); }
+    .step:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
 
     .step-num {
       font-family: 'DM Serif Display', serif;
       font-size: 2.5rem;
-      color: var(--border);
+      color: rgba(255,255,255,0.2);
       line-height: 1;
       margin-bottom: 1rem;
     }
 
-    .step h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--navy); }
-    .step p  { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
+    .step h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--white); }
+    .step p  { font-size: 0.88rem; color: rgba(255,255,255,0.6); font-weight: 300; }
 
     /* ── ADVISORS GRID ── */
     .advisors-grid {
@@ -459,7 +467,6 @@
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; padding: 6rem 5% 3rem; }
       .hero-right { display: none; }
-      .stats-bar { gap: 2.5rem; }
       nav ul { display: none; }
     }
   </style>
@@ -470,7 +477,7 @@
   <nav>
     <a href="#" class="logo" style="font-size:1.7rem;"><img src="TalkCollegesIconTransparent.png" style="height:68px;vertical-align:middle;margin-right:6px;" />Talk<span>Colleges</span></a>
     <ul>
-      <li><a href="#how-it-works">Our Process</a></li>
+      <li><a href="#our-process">Our Process</a></li>
       <li><a href="#advisors">Advisors</a></li>
       <li><a href="#stories">Stories</a></li>
       <li><a href="#contact" class="nav-cta">Get started</a></li>
@@ -482,14 +489,14 @@
   <section class="hero">
     <div class="hero-left">
       <div class="hero-tag" style="display:block; text-align:left;">
-  If I have seen further, it is by standing on the shoulders of Giants.
-  <div style="text-align:right; margin-top:0.1rem;">— Sir Isaac Newton</div>
-</div>
+        If I have seen further, it is by standing on the shoulders of Giants.
+        <div style="text-align:right; margin-top:0.1rem;">— Sir Isaac Newton</div>
+      </div>
       <h1>Get into your<br/><em>dream school</em><br/>with real advice</h1>
       <p class="hero-desc">Talk directly with students who got into Harvard, Yale, and T5-30 Schools. Real stories, real strategies — not generic tips.</p>
       <div class="hero-actions">
         <a href="#advisors" class="btn btn-gold">Find an advisor</a>
-        <a href="#OUR PROCESS" class="btn btn-outline">Our Process</a>
+        <a href="#our-process" class="btn btn-outline">Our Process</a>
       </div>
     </div>
 
@@ -537,7 +544,7 @@
   </section>
 
   <!-- OUR PROCESS -->
-  <section class="section" id="Our process">
+  <section class="section-process" id="our-process">
     <span class="section-tag">Our process</span>
     <h2 class="section-title">Simple, personal, and effective</h2>
     <p class="section-sub">No corporate consultants. Just real students who've been exactly where you are.</p>
@@ -660,7 +667,7 @@
   <footer>
     <a href="#" class="logo">Talk<span>Colleges</span></a>
     <div>
-      <a href="#how-it-works">Our Process</a>
+      <a href="#our-process">Our Process</a>
       <a href="#advisors">Advisors</a>
       <a href="#stories">Stories</a>
       <a href="mailto:hello@talkcolleges.com">Contact</a>
