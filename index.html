@@ -199,31 +199,31 @@
 
     .carousel-track { position: relative; }
 
-   .carousel-slide {
-  display: none;
-  position: absolute;
-  top: 0; left: 0; width: 100%;
-  animation: none;
-}
+    .carousel-slide {
+      display: none;
+      position: absolute;
+      top: 0; left: 0; width: 100%;
+      animation: none;
+    }
 
-.carousel-slide.active {
-  display: block;
-  position: relative;
-  animation: slideIn 0.4s ease;
-}
+    .carousel-slide.active {
+      display: block;
+      position: relative;
+      animation: slideIn 0.4s ease;
+    }
 
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(40px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
 
     .carousel-slide img {
-  width: 100%;
-  height: 380px;
-  object-fit: cover;
-  border-radius: 16px;
-  display: block;
-}
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+    }
 
     .carousel-caption {
       position: absolute;
@@ -275,45 +275,15 @@
       background: rgba(255,255,255,0.35);
     }
 
-    /* done = small dot */
-    .indicator.done {
-      width: 6px;
-    }
-
-    /* active = progress bar */
-    .indicator.active {
-      width: 40px;
-      position: relative;
-    }
-
-    /* upcoming = small dot */
-    .indicator.upcoming {
-      width: 6px;
-    }
+    .indicator.done     { width: 6px; }
+    .indicator.active   { width: 40px; position: relative; }
+    .indicator.upcoming { width: 6px; }
 
     .indicator-fill {
       height: 100%;
       width: 0%;
       background: white;
       border-radius: 3px;
-    }
-
-    .indicator.done .indicator-fill {
-      width: 100%;
-    }
-
-    .indicator.active .indicator-fill {
-  animation: fillBar 4s linear forwards;
-  animation-play-state: running;
-}
-
-.carousel:hover .indicator.active .indicator-fill {
-  animation-play-state: paused;
-}
-
-    @keyframes fillBar {
-      from { width: 0%; }
-      to   { width: 100%; }
     }
 
     /* ── STATS ── */
@@ -398,14 +368,8 @@
       margin-bottom: 1rem;
     }
 
-    .step h3 {
-      font-size: 1rem;
-      font-weight: 500;
-      margin-bottom: 0.6rem;
-      color: var(--navy);
-    }
-
-    .step p { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
+    .step h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--navy); }
+    .step p  { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
 
     /* ── ADVISORS GRID ── */
     .advisors-grid {
@@ -424,7 +388,6 @@
     .advisor-full-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(15,31,56,0.1); }
 
     .advisor-full-card .avatar { width: 54px; height: 54px; font-size: 1.3rem; margin-bottom: 1rem; }
-
     .advisor-full-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.2rem; }
     .advisor-full-card .school-tag { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.9rem; }
     .advisor-full-card .specialty { font-size: 0.83rem; color: var(--navy); font-weight: 300; border-top: 1px solid var(--border); padding-top: 0.8rem; }
@@ -470,7 +433,7 @@
 
     .testimonial-author { display: flex; align-items: center; gap: 0.7rem; }
     .testimonial-author .avatar { width: 36px; height: 36px; font-size: 0.85rem; }
-    .t-name { font-size: 0.83rem; font-weight: 500; }
+    .t-name   { font-size: 0.83rem; font-weight: 500; }
     .t-school { font-size: 0.75rem; color: var(--muted); }
 
     /* ── CTA SECTION ── */
@@ -559,19 +522,19 @@
         <div class="carousel-track">
           <div class="carousel-slide active">
             <img src="Harvard.jpg" />
-            <div class="carousel-caption">Lowell House - <strong>Harvard University</strong></div>
+            <div class="carousel-caption">Lowell House · <strong>Harvard University</strong></div>
           </div>
           <div class="carousel-slide">
             <img src="Yale.jpg" />
-            <div class="carousel-caption">Yale Library - <strong>Yale University</strong></div>
+            <div class="carousel-caption">Yale Library · <strong>Yale University</strong></div>
           </div>
           <div class="carousel-slide">
             <img src="UChicago.jpeg" />
-            <div class="carousel-caption">Rockefeller Memorial Chapel - <strong>University of Chicago</strong></div>
+            <div class="carousel-caption">Rockefeller Memorial Chapel · <strong>University of Chicago</strong></div>
           </div>
           <div class="carousel-slide">
             <img src="NYU.jpeg" />
-            <div class="carousel-caption">Washington Square Park - <strong>New York University</strong></div>
+            <div class="carousel-caption">Washington Square Park · <strong>New York University</strong></div>
           </div>
         </div>
         <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#8592;</button>
@@ -738,9 +701,10 @@
     const indicatorContainer = document.getElementById('indicators');
     const DURATION = 4000;
     let current = 0;
-    let timer = null;
+    let paused = false;
+    let progress = 0;
+    let lastTime = null;
 
-    // Build indicators
     slides.forEach((_, i) => {
       const ind = document.createElement('div');
       ind.className = 'indicator ' + (i === 0 ? 'active' : 'upcoming');
@@ -749,55 +713,57 @@
       indicatorContainer.appendChild(ind);
     });
 
-    function getIndicators() {
-      return document.querySelectorAll('.indicator');
-    }
+    function getIndicators() { return document.querySelectorAll('.indicator'); }
 
     function updateIndicators(newIndex) {
-      const indicators = getIndicators();
-      indicators.forEach((ind, i) => {
+      getIndicators().forEach((ind, i) => {
         ind.className = 'indicator';
         if (i < newIndex) {
           ind.classList.add('done');
+          ind.querySelector('.indicator-fill').style.width = '100%';
         } else if (i === newIndex) {
           ind.classList.add('active');
-          // restart animation by replacing the fill element
-          const fill = ind.querySelector('.indicator-fill');
-          const newFill = fill.cloneNode(true);
-          ind.replaceChild(newFill, fill);
+          ind.querySelector('.indicator-fill').style.width = '0%';
         } else {
           ind.classList.add('upcoming');
+          ind.querySelector('.indicator-fill').style.width = '0%';
         }
       });
+    }
+
+    function tick(timestamp) {
+      if (!lastTime) lastTime = timestamp;
+      if (!paused) {
+        progress += timestamp - lastTime;
+        const fill = getIndicators()[current]?.querySelector('.indicator-fill');
+        if (fill) fill.style.width = Math.min((progress / DURATION) * 100, 100) + '%';
+        if (progress >= DURATION) {
+          moveCarousel(1);
+          requestAnimationFrame(tick);
+          return;
+        }
+      }
+      lastTime = timestamp;
+      requestAnimationFrame(tick);
     }
 
     function goToSlide(n) {
       slides[current].classList.remove('active');
       current = (n + slides.length) % slides.length;
       slides[current].classList.add('active');
+      progress = 0;
+      lastTime = null;
       updateIndicators(current);
-      resetTimer();
     }
 
-    function moveCarousel(dir) {
-      goToSlide(current + dir);
-    }
+    function moveCarousel(dir) { goToSlide(current + dir); }
 
-    function resetTimer() {
-      if (timer) clearInterval(timer);
-      timer = setInterval(() => moveCarousel(1), DURATION);
-    }
+    const carousel = document.querySelector('.carousel');
+    carousel.addEventListener('mouseenter', () => { paused = true; });
+    carousel.addEventListener('mouseleave', () => { paused = false; lastTime = null; });
 
-    // Start
     updateIndicators(0);
-    resetTimer();
-
-const carousel = document.querySelector('.carousel');
-carousel.addEventListener('mouseenter', () => clearInterval(timer));
-carousel.addEventListener('mouseleave', () => {
-  updateIndicators(current);
-  resetTimer();
-});
+    requestAnimationFrame(tick);
   </script>
 
 </body>
