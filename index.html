@@ -317,14 +317,6 @@
     }
 
     /* ── OUR PROCESS ── */
-    .section-process {
-      padding: 6rem 6%;
-      background: var(--navy);
-    }
-
-    .section-process .section-title { color: var(--white); }
-    .section-process .section-sub   { color: rgba(255,255,255,0.6); }
-
     .steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -332,25 +324,25 @@
     }
 
     .step {
-      background: rgba(255,255,255,0.07);
+      background: var(--cream);
       border-radius: 10px;
       padding: 2rem 1.7rem;
-      border: 1px solid rgba(255,255,255,0.15);
+      border: 1px solid var(--border);
       transition: transform 0.2s, box-shadow 0.2s;
       position: relative;
     }
-    .step:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+    .step:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(15,31,56,0.1); }
 
     .step-num {
       font-family: 'DM Serif Display', serif;
       font-size: 2.5rem;
-      color: rgba(255,255,255,0.2);
+      color: var(--navy);
       line-height: 1;
       margin-bottom: 1rem;
     }
 
-    .step h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--white); }
-    .step p  { font-size: 0.88rem; color: rgba(255,255,255,0.6); font-weight: 300; }
+    .step h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--navy); }
+    .step p  { font-size: 0.88rem; color: var(--navy); font-weight: 300; }
 
     /* ── ADVISORS GRID ── */
     .advisors-grid {
@@ -544,7 +536,7 @@
   </section>
 
   <!-- OUR PROCESS -->
-  <section class="section-process" id="our-process">
+  <section class="section" id="our-process">
     <span class="section-tag">Our process</span>
     <h2 class="section-title">Simple, personal, and effective</h2>
     <p class="section-sub">No corporate consultants. Just real students who've been exactly where you are.</p>
