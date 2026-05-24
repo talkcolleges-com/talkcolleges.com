@@ -287,7 +287,7 @@
     }
 
     /* ── SECTIONS ── */
-    .section { padding: 4rem 6%; scroll-margin-top: 100px; }
+    .section { padding: 2rem 6% 4rem; scroll-margin-top: 100px; }
     .section-alt { background: var(--white); }
 
     .section-tag {
@@ -315,6 +315,7 @@
       max-width: 480px;
       margin-bottom: 3.5rem;
     }
+    .section-sub strong { font-weight: 700; color: var(--navy); }
 
     /* ── OUR PROCESS ── */
     .steps {
@@ -343,7 +344,82 @@
 
     .step h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--navy); }
     .step p  { font-size: 0.88rem; color: var(--navy); font-weight: 300; }
-.step p strong { font-weight: 600; }
+    .step p strong { font-weight: 700; color: var(--navy); }
+
+    /* ── WHY US COMPARISON TABLE ── */
+    .comparison-wrapper {
+      overflow-x: auto;
+      border-radius: 14px;
+      box-shadow: 0 4px 32px rgba(77,16,122,0.10);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .comparison-table thead tr {
+      background: var(--navy);
+    }
+
+    .comparison-table thead th {
+      padding: 1.1rem 1.4rem;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .comparison-table thead th:first-child {
+      text-align: left;
+      color: rgba(255,255,255,0.55);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .comparison-table thead th.highlight-col {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    .comparison-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .comparison-table tbody tr:last-child { border-bottom: none; }
+    .comparison-table tbody tr:hover { background: var(--cream); }
+
+    .comparison-table tbody td {
+      padding: 1rem 1.4rem;
+      font-size: 0.88rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .comparison-table tbody td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: var(--navy);
+      font-size: 0.9rem;
+      width: 40%;
+    }
+
+    .comparison-table tbody td.highlight-col {
+      background: rgba(209,179,101,0.07);
+    }
+
+    .check { color: #22a06b; font-size: 1.1rem; }
+    .cross { color: #c0392b; font-size: 1.1rem; }
+    .partial { color: var(--gold); font-size: 0.82rem; font-weight: 500; }
 
     /* ── ADVISORS GRID ── */
     .advisors-grid {
@@ -363,12 +439,35 @@
 
     .advisor-full-card .avatar { width: 54px; height: 54px; font-size: 1.3rem; margin-bottom: 1rem; }
     .advisor-full-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.2rem; }
-    .advisor-full-card .school-tag { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.9rem; }
-    .advisor-full-card .specialty { font-size: 0.83rem; color: var(--navy); font-weight: 300; border-top: 1px solid var(--border); padding-top: 0.8rem; }
+    .advisor-full-card .school-tag {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+      line-height: 1.6;
+    }
+    .advisor-full-card .specialty {
+      font-size: 0.83rem;
+      color: var(--navy);
+      font-weight: 300;
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+    }
+
+    .advisor-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0.8rem 0;
+    }
 
     .advisor-cta {
       display: inline-block;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
       font-size: 0.8rem;
       font-weight: 500;
       color: var(--gold);
@@ -471,8 +570,8 @@
     <a href="#" class="logo" style="font-size:1.7rem;"><img src="TalkCollegesIconTransparent.png" style="height:68px;vertical-align:middle;margin-right:6px;" />Talk<span>Colleges</span></a>
     <ul>
       <li><a href="#our-process">Our Process</a></li>
+      <li><a href="#why-us">Why Us</a></li>
       <li><a href="#advisors">Advisors</a></li>
-      <li><a href="#stories">Stories</a></li>
       <li><a href="#contact" class="nav-cta">Get started</a></li>
       <li><a href="#contact" class="nav-cta">Join Us!</a></li>
     </ul>
@@ -482,11 +581,11 @@
   <section class="hero">
     <div class="hero-left">
       <div class="hero-tag" style="display:block; text-align:left;">
-        If I have seen further[than others], it is by standing on the shoulders of Giants.
+        If I have seen further [than others], it is by standing on the shoulders of Giants.
         <div style="text-align:right; margin-top:0.1rem;">— Sir Isaac Newton</div>
       </div>
       <h1>Get into your<br/><em>dream school</em><br/>with real advice</h1>
-      <p class="hero-desc">Talk directly with students who got into Harvard, Yale, and T5-30 Schools. Real stories, real strategies — not generic tips.</p>
+      <p class="hero-desc">Talk directly with students who got into Harvard, Yale, and T5-30 Schools. Real stories, real strategies tailored to you —at an affordable price.</p>
       <div class="hero-actions">
         <a href="#advisors" class="btn btn-gold">Find an advisor</a>
         <a href="#our-process" class="btn btn-outline">Our Process</a>
@@ -546,17 +645,17 @@
       <div class="step">
         <div class="step-num">01</div>
         <h3>Browse advisors</h3>
-        <p>Filter by school and major. Find someone whose path matches where you want to go.</p>
+        <p>Filter by school, major, or background. Find someone whose path matches where you want to go.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
         <h3>Book a session</h3>
-        <p>Schedule a <strong>one time, 1-on-1 video call</strong> at a time that works for you. Sessions run for 60 minutes.</p>
+        <p>Schedule a <strong>one time, 1-on-1 video call</strong> at a time that works for you.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
         <h3>Get real advice</h3>
-        <p>Talk stats, essays, extracurriculars, and strategy with someone who just went through the college application process.</p>
+        <p>Talk essays, interviews, extracurriculars, and strategy with someone who just went through it.</p>
       </div>
       <div class="step">
         <div class="step-num">04</div>
@@ -566,84 +665,153 @@
     </div>
   </section>
 
-  <!-- ADVISORS -->
-  <section class="section section-alt" id="advisors">
-    <span class="section-tag">Our advisors</span>
-    <h2 class="section-title">Students who've been there</h2>
-    <p class="section-sub">Every advisor on TalkColleges is a current student or recent graduate from a top university.</p>
+  <!-- WHY US -->
+  <section class="section section-alt" id="why-us">
+    <span class="section-tag">Why us</span>
+    <h2 class="section-title">The smarter way to get in</h2>
+    <p class="section-sub">See how we compare with corporate consulting firms.</p>
 
-    <div class="advisors-grid">
-      <div class="advisor-full-card">
-        <div class="avatar av1">S</div>
-        <h3>Sarah K.</h3>
-        <div class="school-tag">Harvard University · Computer Science '24</div>
-        <div class="specialty">Specializes in CS essays, research experience, and Ivy League strategy.</div>
-        <a href="#contact" class="advisor-cta">Book a session →</a>
-      </div>
-      <div class="advisor-full-card">
-        <div class="avatar av3">M</div>
-        <h3>Marcus L.</h3>
-        <div class="school-tag">MIT · Electrical Engineering '25</div>
-        <div class="specialty">Focuses on STEM applications, extracurricular positioning, and financial aid.</div>
-        <a href="#contact" class="advisor-cta">Book a session →</a>
-      </div>
-      <div class="advisor-full-card">
-        <div class="avatar av2">A</div>
-        <h3>Aisha T.</h3>
-        <div class="school-tag">Stanford University · Biology '24</div>
-        <div class="specialty">Pre-med track, research, and navigating the Stanford application process.</div>
-        <a href="#contact" class="advisor-cta">Book a session →</a>
-      </div>
-      <div class="advisor-full-card">
-        <div class="avatar av4">J</div>
-        <h3>James R.</h3>
-        <div class="school-tag">Yale University · Political Science '25</div>
-        <div class="specialty">Humanities essays, interview prep, and liberal arts college strategy.</div>
-        <a href="#contact" class="advisor-cta">Book a session →</a>
-      </div>
+    <div class="comparison-wrapper">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="highlight-col">TalkColleges</th>
+            <th>Corporate</th>
+
+          </tr>
+        </thead>
+        <tbody>
+<tr>
+  <td>Pricing</td>
+  <td class="highlight-col">$50–$125/hr</td>
+  <td>$5,000+ packages</td>
+</tr>
+          <tr>
+            <td>Advisors</td>
+            <td class="highlight-col">Recently Admitted/Current Students</td>
+            <td>Former Admission Officers </td>
+            
+          </tr>
+          
+                    
+          <tr>
+            <td>1-on-1 personalized session</td>
+            <td class="highlight-col"><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            
+          </tr>
+          <tr>
+            <td>Requires long-term commitment</td>
+            <td class="highlight-col"><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+
+            
+          </tr>
+          <tr>
+            <td>Essay & interview coaching</td>
+            <td class="highlight-col"><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            
+          </tr>
+          <tr>
+            <td>"Insider knowledge"</td>
+            <td class="highlight-col"><span class="check">✓</span></td>
+            <td>Varies</span></td>
+
+        </tr>
+        <tr>
+            <td>Help with Financial Aid (FAFSA/CSS)</td>
+            <td class="highlight-col"><span class="cross">✗</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>International Students/Student Visa</td>
+            <td class="highlight-col"><span class="cross">✗</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Ideal for</td>
+            <td class="highlight-col">Students seeking firsthand guidance from peers currently enrolled at their target schools, at an affordable price to most.</td>
+            <td>Affluent students who want a dedicated mentor throughout their entire college application process.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section class="section" id="stories">
-    <span class="section-tag">Student stories</span>
-    <h2 class="section-title">What students are saying</h2>
-    <p class="section-sub">From the students who used TalkColleges to get in.</p>
+  <!-- ADVISORS -->
+  <section class="section" id="advisors">
+    <span class="section-tag">Our advisors</span>
+    <h2 class="section-title">Students who've been there</h2>
+    <p class="section-sub">Every advisor on TalkColleges is a <strong>current student</strong> from a top university.</p>
+    <a href="book.html" class="btn btn-gold" style="margin-bottom: 2.5rem; display: inline-block;">Browse our advisors</a>
 
-    <div class="testimonials">
-      <div class="testimonial">
-        <span class="quote-mark">"</span>
-        <p>I talked to Sarah for an hour about my Common App essay and completely rewrote it. I got into Cornell ED. Best decision I made all of senior year.</p>
-        <div class="testimonial-author">
-          <div class="avatar av3" style="width:36px;height:36px;font-size:0.85rem;">R</div>
-          <div>
-            <div class="t-name">Riya M.</div>
-            <div class="t-school">Now at Cornell University</div>
-          </div>
+    <div class="advisors-grid">
+
+      <!-- Nolan -->
+      <div class="advisor-full-card">
+        <div class="avatar av1">N</div>
+        <h3>Nolan</h3>
+        <div class="school-tag">
+          <span>Yale University '29</span>
+          <span>Computer Science</span>
+        </div>
+        <div class="advisor-stats">
+          <span>— GPA: 3.95/4.00</span>
+          <span>— SAT: 1570</span>
+          <span>— NOT a Student Athlete</span>
         </div>
       </div>
-      <div class="testimonial">
-        <span class="quote-mark">"</span>
-        <p>Marcus helped me figure out how to frame my robotics club experience. I didn't realize how strong my application actually was until he walked me through it.</p>
-        <div class="testimonial-author">
-          <div class="avatar av1" style="width:36px;height:36px;font-size:0.85rem;">D</div>
-          <div>
-            <div class="t-name">Daniel P.</div>
-            <div class="t-school">Now at Georgia Tech</div>
-          </div>
+
+      <!-- Ryan -->
+      <div class="advisor-full-card">
+        <div class="avatar av3">R</div>
+        <h3>Ryan</h3>
+        <div class="school-tag">
+          <span>Vanderbilt University '30</span>
+          <span>College of Arts and Science</span>
+          <span>Blair School of Music</span>
+          <span>Applied Mathematics & Music</span>
+        </div>
+        <div class="advisor-stats">
+          <span>— GPA: 4.3/4.5</span>
+          <span>— SAT: 1540</span>
+          <span>— NOT a Student Athlete</span>
         </div>
       </div>
-      <div class="testimonial">
-        <span class="quote-mark">"</span>
-        <p>I was stressed about interviews and Aisha ran me through the whole thing. Felt so much more confident walking in. Got into my top three schools.</p>
-        <div class="testimonial-author">
-          <div class="avatar av2" style="width:36px;height:36px;font-size:0.85rem;">L</div>
-          <div>
-            <div class="t-name">Lena W.</div>
-            <div class="t-school">Now at Duke University</div>
-          </div>
+
+      <!-- Roman -->
+      <div class="advisor-full-card">
+        <div class="avatar av2">R</div>
+        <h3>Roman</h3>
+        <div class="school-tag">
+          <span>University of Chicago '30</span>
+          <span>Geophysical Sciences</span>
+        </div>
+        <div class="advisor-stats">
+          <span>— GPA: 4.2/4.5</span>
+          <span>— SAT: 1540</span>
+          <span>— NOT a Student Athlete</span>
         </div>
       </div>
+
+      <!-- David -->
+      <div class="advisor-full-card">
+        <div class="avatar av4">D</div>
+        <h3>David</h3>
+        <div class="school-tag">
+          <span>New York University '30</span>
+          <span>College of Arts and Sciences</span>
+          <span>Biology</span>
+        </div>
+        <div class="advisor-stats">
+          <span>— GPA: 4.2/4.5</span>
+          <span>— SAT: 1540</span>
+          <span>— NOT a Student Athlete</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -652,7 +820,7 @@
     <span class="section-tag">Ready to start?</span>
     <h2 class="section-title">Your dream school is closer than you think</h2>
     <p>Connect with a student advisor today and start building the application that gets you in.</p>
-    <a href="mailto:hello@talkcolleges.com" class="btn btn-gold">Get in touch</a>
+    <a href="mailto:support@talkcolleges.com" class="btn btn-gold">Contact Us!</a>
     <a href="#advisors" class="btn btn-white">Browse advisors</a>
   </section>
 
@@ -661,8 +829,8 @@
     <a href="#" class="logo">Talk<span>Colleges</span></a>
     <div>
       <a href="#our-process">Our Process</a>
+      <a href="#why-us">Why Us</a>
       <a href="#advisors">Advisors</a>
-      <a href="#stories">Stories</a>
       <a href="mailto:hello@talkcolleges.com">Contact</a>
     </div>
     <span>© 2025 TalkColleges. All rights reserved.</span>
