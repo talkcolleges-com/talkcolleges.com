@@ -161,6 +161,12 @@
       cursor: pointer;
     }
 
+    .btn-large {
+      padding: 1.2rem 3rem;
+      font-size: 1.1rem;
+      border-radius: 8px;
+    }
+
     .btn-gold  { background: var(--gold); color: var(--white); border: 2px solid var(--gold); }
     .btn-gold:hover  { background: transparent; color: var(--gold); }
     .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
@@ -384,6 +390,7 @@
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
+      width: 40%;
     }
 
     .comparison-table thead th.highlight-col {
@@ -448,13 +455,6 @@
       margin-bottom: 0.9rem;
       line-height: 1.6;
     }
-    .advisor-full-card .specialty {
-      font-size: 0.83rem;
-      color: var(--navy);
-      font-weight: 300;
-      border-top: 1px solid var(--border);
-      padding-top: 0.8rem;
-    }
 
     .advisor-stats {
       display: flex;
@@ -465,49 +465,15 @@
       margin: 0.8rem 0;
     }
 
-    .advisor-cta {
-      display: inline-block;
-      margin-top: 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--gold);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      transition: color 0.2s;
+    /* ── BECOME AN ADVISOR ── */
+    .advisor-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
     }
-    .advisor-cta:hover { color: var(--navy); }
-
-    /* ── TESTIMONIALS ── */
-    .testimonials {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .testimonial {
-      background: var(--white);
-      border-radius: 12px;
-      padding: 1.8rem;
-      border: 1px solid var(--border);
-      position: relative;
-    }
-
-    .quote-mark {
-      font-family: 'DM Serif Display', serif;
-      font-size: 3rem;
-      color: var(--gold);
-      opacity: 0.3;
-      line-height: 0.5;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .testimonial p { font-size: 0.93rem; color: var(--navy); font-weight: 300; margin-bottom: 1.2rem; line-height: 1.6; }
-
-    .testimonial-author { display: flex; align-items: center; gap: 0.7rem; }
-    .testimonial-author .avatar { width: 36px; height: 36px; font-size: 0.85rem; }
-    .t-name   { font-size: 0.83rem; font-weight: 500; }
-    .t-school { font-size: 0.75rem; color: var(--muted); }
 
     /* ── CTA SECTION ── */
     .cta-section {
@@ -572,7 +538,8 @@
       <li><a href="#our-process">Our Process</a></li>
       <li><a href="#why-us">Why Us</a></li>
       <li><a href="#advisors">Advisors</a></li>
-      <li><a href="#contact" class="nav-cta">Get started</a></li>
+      <li><a href="#become-an-advisor">Become an Advisor</a></li>
+      <li><a href="book.html" class="nav-cta">Get started</a></li>
       <li><a href="#contact" class="nav-cta">Join Us!</a></li>
     </ul>
   </nav>
@@ -585,9 +552,9 @@
         <div style="text-align:right; margin-top:0.1rem;">— Sir Isaac Newton</div>
       </div>
       <h1>Get into your<br/><em>dream school</em><br/>with real advice</h1>
-      <p class="hero-desc">Talk directly with students who got into Harvard, Yale, and T5-30 Schools. Real stories, real strategies tailored to you —at an affordable price.</p>
+      <p class="hero-desc">Talk directly with students who got into Harvard, Yale, and T5-30 Schools. Real stories, real strategies tailored to you.</p>
       <div class="hero-actions">
-        <a href="#advisors" class="btn btn-gold">Find an advisor</a>
+        <a href="book.html" class="btn btn-gold">Find an advisor</a>
         <a href="#our-process" class="btn btn-outline">Our Process</a>
       </div>
     </div>
@@ -650,7 +617,7 @@
       <div class="step">
         <div class="step-num">02</div>
         <h3>Book a session</h3>
-        <p>Schedule a <strong>one time, 1-on-1 video call</strong> at a time that works for you.</p>
+        <p>Schedule a <strong>one time, 1-on-1 video call</strong> at a time that works for you. Each session lasts approximately <strong>60 minutes.</strong></p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
@@ -669,7 +636,7 @@
   <section class="section section-alt" id="why-us">
     <span class="section-tag">Why us</span>
     <h2 class="section-title">The smarter way to get in</h2>
-    <p class="section-sub">See how we compare with corporate consulting firms.</p>
+    <p class="section-sub">See how we compare with corporate admission consultants.</p>
 
     <div class="comparison-wrapper">
       <table class="comparison-table">
@@ -678,55 +645,46 @@
             <th></th>
             <th class="highlight-col">TalkColleges</th>
             <th>Corporate</th>
-
           </tr>
         </thead>
         <tbody>
-<tr>
-  <td>Pricing</td>
-  <td class="highlight-col">$50–$125/hr</td>
-  <td>$5,000+ packages</td>
-</tr>
+          <tr>
+            <td>Pricing</td>
+            <td class="highlight-col">$50–$150/hr</td>
+            <td>$5,000+ packages</td>
+          </tr>
           <tr>
             <td>Advisors</td>
-            <td class="highlight-col">Recently Admitted/Current Students</td>
-            <td>Former Admission Officers </td>
-            
+            <td class="highlight-col">Recently Admitted / Current Students</td>
+            <td>Former Admissions Officers</td>
           </tr>
-          
-                    
+          <tr>
+            <td>Peer-to-peer advice from real students</td>
+            <td class="highlight-col"><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+                </tr>
           <tr>
             <td>1-on-1 personalized session</td>
             <td class="highlight-col"><span class="check">✓</span></td>
             <td><span class="check">✓</span></td>
-            
           </tr>
           <tr>
-            <td>Requires long-term commitment</td>
-            <td class="highlight-col"><span class="check">✓</span></td>
-            <td><span class="cross">✗</span></td>
-
-            
+            <td>No long-term commitment required</td>
+            <td class="highlight-col"></span><span class="check">✓</span></td>
+            <td><span class="cross">✗</td>
           </tr>
           <tr>
-            <td>Essay & interview coaching</td>
+            <td>Essay &amp; interview coaching</td>
             <td class="highlight-col"><span class="check">✓</span></td>
             <td><span class="check">✓</span></td>
-            
           </tr>
           <tr>
-            <td>"Insider knowledge"</td>
-            <td class="highlight-col"><span class="check">✓</span></td>
-            <td>Varies</span></td>
-
-        </tr>
-        <tr>
             <td>Help with Financial Aid (FAFSA/CSS)</td>
             <td class="highlight-col"><span class="cross">✗</span></td>
             <td><span class="check">✓</span></td>
           </tr>
           <tr>
-            <td>International Students/Student Visa</td>
+            <td>International Students / Student Visa</td>
             <td class="highlight-col"><span class="cross">✗</span></td>
             <td><span class="check">✓</span></td>
           </tr>
@@ -772,7 +730,7 @@
           <span>Vanderbilt University '30</span>
           <span>College of Arts and Science</span>
           <span>Blair School of Music</span>
-          <span>Applied Mathematics & Music</span>
+          <span>Applied Mathematics &amp; Music</span>
         </div>
         <div class="advisor-stats">
           <span>— GPA: 4.3/4.5</span>
@@ -815,13 +773,23 @@
     </div>
   </section>
 
+  <!-- BECOME AN ADVISOR -->
+  <section class="section section-alt" id="become-an-advisor">
+    <span class="section-tag">Join our team</span>
+    <div class="advisor-header">
+      <h2 class="section-title" style="margin-bottom:0;">Become an advisor!</h2>
+      <a href="#" class="btn btn-gold btn-large">Apply to be an advisor</a>
+    </div>
+    <p class="section-sub">Are you a current student at a top university? Share your experience and help the next generation get in — while earning on your own schedule. Advisors recieve the <strong>majority of tuition.</strong> </p>
+  </section>
+
   <!-- CTA -->
   <section class="cta-section" id="contact">
     <span class="section-tag">Ready to start?</span>
     <h2 class="section-title">Your dream school is closer than you think</h2>
     <p>Connect with a student advisor today and start building the application that gets you in.</p>
-    <a href="mailto:support@talkcolleges.com" class="btn btn-gold">Contact Us!</a>
-    <a href="#advisors" class="btn btn-white">Browse advisors</a>
+    <a href="mailto:hello@talkcolleges.com" class="btn btn-gold">Get in touch</a>
+    <a href="book.html" class="btn btn-white">Browse advisors</a>
   </section>
 
   <!-- FOOTER -->
@@ -831,6 +799,7 @@
       <a href="#our-process">Our Process</a>
       <a href="#why-us">Why Us</a>
       <a href="#advisors">Advisors</a>
+      <a href="#become-an-advisor">Become an Advisor</a>
       <a href="mailto:hello@talkcolleges.com">Contact</a>
     </div>
     <span>© 2025 TalkColleges. All rights reserved.</span>
