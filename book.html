@@ -76,39 +76,39 @@
 
     /* ── PAGE HEADER ── */
     .page-header {
-      padding: 10rem 6% 3rem;
+      padding: 11rem 6% 2.5rem;
       text-align: center;
     }
 
     .page-tag {
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 500;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--gold);
       display: block;
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.9rem;
     }
 
     .page-header h1 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
       line-height: 1.1;
       letter-spacing: -0.02em;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
     }
 
     .page-header p {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: var(--muted);
-      font-weight: 300;
-      max-width: 480px;
+      font-weight: 400;
+      max-width: 540px;
       margin: 0 auto;
     }
 
     /* ── SEARCH ── */
     .search-bar {
-      padding: 2rem 6%;
+      padding: 1rem 6% 2rem;
       display: flex;
       justify-content: center;
     }
@@ -121,27 +121,28 @@
 
     .search-wrap input {
       width: 100%;
-      padding: 0.85rem 1.2rem 0.85rem 3rem;
+      padding: 0.95rem 1.2rem 0.95rem 3.2rem;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 30px;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.95rem;
       color: var(--navy);
       background: var(--white);
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 14px rgba(77,16,122,0.03);
     }
 
     .search-wrap input:focus {
       border-color: var(--navy);
-      box-shadow: 0 0 0 3px rgba(77,16,122,0.08);
+      box-shadow: 0 0 0 4px rgba(77,16,122,0.08);
     }
 
-    .search-wrap input::placeholder { color: var(--muted); }
+    .search-wrap input::placeholder { color: var(--muted); opacity: 0.7; }
 
     .search-icon {
       position: absolute;
-      left: 1rem;
+      left: 1.3rem;
       top: 50%;
       transform: translateY(-50%);
       color: var(--muted);
@@ -151,10 +152,12 @@
 
     /* ── RESULTS COUNT ── */
     .results-count {
-      padding: 0 6% 1.5rem;
-      font-size: 0.82rem;
-      color: var(--muted);
+      padding: 0 6% 2rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--navy);
       text-align: center;
+      min-height: 20px;
     }
 
     /* ── ADVISORS GRID ── */
@@ -162,27 +165,33 @@
 
     .advisors-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.3rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
 
     .advisor-card {
-      background: var(--cream);
-      border-radius: 12px;
-      padding: 1.8rem;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
       border: 1px solid var(--border);
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.25s, box-shadow 0.25s;
+      box-shadow: 0 4px 20px rgba(77,16,122,0.02);
+      display: flex;
+      flex-direction: column;
     }
-    .advisor-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(77,16,122,0.1); }
+    .advisor-card:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 12px 30px rgba(77,16,122,0.08); 
+    }
 
     .avatar {
-      width: 54px; height: 54px;
+      width: 58px; height: 58px;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-family: 'DM Serif Display', serif;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       color: var(--white);
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       flex-shrink: 0;
     }
     .av1 { background: var(--navy); }
@@ -190,53 +199,67 @@
     .av3 { background: #2a5298; }
     .av4 { background: #8b1a1a; }
 
-    .advisor-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .advisor-card h3 { font-size: 1.15rem; font-weight: 500; margin-bottom: 0.3rem; }
 
     .advisor-card .school-tag {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: var(--muted);
-      margin-bottom: 0.9rem;
+      margin-bottom: 1.5rem;
       line-height: 1.6;
     }
 
-    .advisor-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-      font-size: 0.8rem;
+    .advisor-card .school-tag span:first-child {
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    .advisor-accepted {
+      font-size: 0.82rem;
       color: var(--muted);
-      margin: 0.8rem 0 1.2rem;
+      margin-bottom: 1.5rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed var(--border);
+      line-height: 1.5;
+    }
+
+    .advisor-accepted strong {
+      color: var(--navy);
+      font-weight: 500;
     }
 
     .btn-book {
-      display: inline-block;
-      padding: 0.55rem 1.2rem;
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 0.7rem 1.2rem;
       background: var(--navy);
       color: var(--white);
-      border-radius: 4px;
-      font-size: 0.82rem;
+      border-radius: 6px;
+      font-size: 0.88rem;
       font-weight: 500;
       text-decoration: none;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.1s;
       cursor: pointer;
       border: none;
       font-family: 'DM Sans', sans-serif;
+      margin-top: auto;
     }
     .btn-book:hover { background: var(--gold); }
+    .btn-book:active { transform: scale(0.98); }
 
     /* ── NO RESULTS ── */
     .no-results {
       text-align: center;
-      padding: 4rem 0;
+      padding: 5rem 0;
       color: var(--muted);
       display: none;
     }
     .no-results h3 {
       font-family: 'DM Serif Display', serif;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       margin-bottom: 0.5rem;
       color: var(--navy);
     }
@@ -492,79 +515,88 @@
   <div class="search-bar">
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="Search by name or school..." oninput="filterAdvisors()" />
+      <input type="text" id="searchInput" placeholder="Search by school or major..." oninput="filterAdvisors()" />
     </div>
   </div>
 
   <div class="results-count" id="resultsCount"></div>
 
   <!-- ADVISORS GRID -->
-  <div class="advisors-section">
+ <div class="advisors-section">
+    
+    <style>
+      .advisor-accepted {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.25rem !important;
+        font-size: 0.82rem;
+        color: var(--muted);
+        margin-bottom: 1.5rem;
+        padding-top: 0.8rem;
+        border-top: 1px dashed var(--border);
+        line-height: 1.5;
+        text-align: left;
+      }
+      .advisor-accepted strong {
+        color: var(--navy);
+        font-weight: 500;
+        margin-bottom: 0.2rem;
+      }
+      .advisor-accepted span {
+        display: block;
+      }
+    </style>
+
     <div class="advisors-grid" id="advisorsGrid">
 
-      <!-- Nolan -->
-      <div class="advisor-card" data-name="nolan" data-school="yale university computer science">
+      <div class="advisor-card">
         <div class="avatar av1">N</div>
         <h3>Nolan</h3>
         <div class="school-tag">
           <span>Yale University '29</span>
           <span>Computer Science</span>
+          <span>NOT a student athlete</span>
         </div>
-        <div class="advisor-stats">
-          <span>— GPA: 3.95/4.00</span>
-          <span>— SAT: 1570</span>
-          <span>— NOT a Student Athlete</span>
+        <div class="advisor-accepted">
+          <strong>Also Accepted To:</strong>
+          <span>Cornell University</span>
+          <span>University of Virginia</span>
         </div>
         <button class="btn-book" onclick="openModal('Nolan', 'Yale University &rsquo;29', 'Computer Science', 'av1', 'https://calendly.com/placeholder-nolan')">Book a session</button>
       </div>
 
-      <!-- Ryan -->
-      <div class="advisor-card" data-name="ryan" data-school="vanderbilt university applied mathematics music">
+      <div class="advisor-card">
         <div class="avatar av3">R</div>
         <h3>Ryan</h3>
         <div class="school-tag">
           <span>Vanderbilt University '30</span>
-          <span>College of Arts and Science</span>
+          <span>College of Arts and Sciences</span>
           <span>Blair School of Music</span>
           <span>Applied Mathematics &amp; Music</span>
+	  <span>NOT a student athlete</span>
         </div>
-        <div class="advisor-stats">
-          <span>— GPA: 4.3/4.5</span>
-          <span>— SAT: 1540</span>
-          <span>— NOT a Student Athlete</span>
-        </div>
-        <button class="btn-book" onclick="openModal('Ryan', 'Vanderbilt University &rsquo;30', 'Applied Mathematics &amp; Music', 'av3', 'https://calendly.com/placeholder-ryan')">Book a session</button>
+                <button class="btn-book" onclick="openModal('Ryan', 'Vanderbilt University &rsquo;30', 'Applied Mathematics &amp; Music', 'av3', 'https://calendly.com/placeholder-ryan')">Book a session</button>
       </div>
 
-      <!-- Roman -->
-      <div class="advisor-card" data-name="roman" data-school="university of chicago geophysical sciences">
+      <div class="advisor-card">
         <div class="avatar av2">R</div>
         <h3>Roman</h3>
         <div class="school-tag">
           <span>University of Chicago '30</span>
           <span>Geophysical Sciences</span>
-        </div>
-        <div class="advisor-stats">
-          <span>— GPA: 4.2/4.5</span>
-          <span>— SAT: 1540</span>
-          <span>— NOT a Student Athlete</span>
-        </div>
+          <span>NOT a student athlete</span>
+               </div>
         <button class="btn-book" onclick="openModal('Roman', 'University of Chicago &rsquo;30', 'Geophysical Sciences', 'av2', 'https://calendly.com/placeholder-roman')">Book a session</button>
       </div>
 
-      <!-- David -->
-      <div class="advisor-card" data-name="david" data-school="new york university nyu biology">
+      <div class="advisor-card">
         <div class="avatar av4">D</div>
         <h3>David</h3>
         <div class="school-tag">
           <span>New York University '30</span>
           <span>College of Arts and Sciences</span>
           <span>Biology</span>
-        </div>
-        <div class="advisor-stats">
-          <span>— GPA: 4.2/4.5</span>
-          <span>— SAT: 1540</span>
-          <span>— NOT a Student Athlete</span>
+          <span>NOT a student athlete</span>
         </div>
         <button class="btn-book" onclick="openModal('David', 'New York University &rsquo;30', 'Biology', 'av4', 'https://calendly.com/placeholder-david')">Book a session</button>
       </div>
@@ -573,7 +605,13 @@
 
     <div class="no-results" id="noResults">
       <h3>No advisors found</h3>
-      <p>Try searching for a different name or school.</p>
+      <p>Try searching for a different school or major.</p>
+    </div>
+  </div>
+
+    <div class="no-results" id="noResults">
+      <h3>No advisors found</h3>
+      <p>Try searching for a different school or major.</p>
     </div>
   </div>
 
@@ -648,9 +686,9 @@
       <a href="index.html#why-us">Why Us</a>
       <a href="book.html">Advisors</a>
       <a href="index.html#become-an-advisor">Become an Advisor</a>
-      <a href="mailto:hello@talkcolleges.com">Contact</a>
+      <a href="mailto:support@talkcolleges.com">Contact</a>
     </div>
-    <span>© 2025 TalkColleges. All rights reserved.</span>
+    <span>© 2026 TalkColleges. All rights reserved.</span>
   </footer>
 
   <script>
@@ -698,15 +736,17 @@
     }
 
     function filterAdvisors() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
       const cards = document.querySelectorAll('.advisor-card');
       let visible = 0;
 
       cards.forEach(card => {
-        const name = card.getAttribute('data-name');
-        const school = card.getAttribute('data-school');
-        if (name.includes(query) || school.includes(query)) {
-          card.style.display = 'block';
+        const schoolTagContent = card.querySelector('.school-tag').textContent.toLowerCase();
+        const acceptedContent = card.querySelector('.advisor-accepted') ? card.querySelector('.advisor-accepted').textContent.toLowerCase() : '';
+        const searchableText = schoolTagContent + ' ' + acceptedContent;
+        
+        if (searchableText.includes(query)) {
+          card.style.display = 'flex';
           visible++;
         } else {
           card.style.display = 'none';
@@ -715,6 +755,7 @@
 
       const count = document.getElementById('resultsCount');
       const noResults = document.getElementById('noResults');
+      
       count.textContent = query ? `${visible} advisor${visible !== 1 ? 's' : ''} found` : '';
       noResults.style.display = visible === 0 ? 'block' : 'none';
     }
