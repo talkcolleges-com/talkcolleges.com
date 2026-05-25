@@ -166,7 +166,6 @@
       gap: 1.3rem;
     }
 
-    /* Matches index.html advisor-full-card style */
     .advisor-card {
       background: var(--cream);
       border-radius: 12px;
@@ -222,6 +221,9 @@
       font-weight: 500;
       text-decoration: none;
       transition: background 0.2s;
+      cursor: pointer;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
     }
     .btn-book:hover { background: var(--gold); }
 
@@ -237,6 +239,178 @@
       font-size: 1.4rem;
       margin-bottom: 0.5rem;
       color: var(--navy);
+    }
+
+    /* ── MODAL OVERLAY ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 5, 35, 0.65);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--white);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 620px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2.2rem;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.2rem; right: 1.4rem;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--muted);
+      line-height: 1;
+    }
+    .modal-close:hover { color: var(--navy); }
+
+    .modal-advisor-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-advisor-header .avatar { margin-bottom: 0; }
+
+    .modal-advisor-header h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .modal-advisor-header p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Legal text */
+    .legal-text {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.4rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .legal-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .legal-text ol {
+      margin-top: 0.6rem;
+      padding-left: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    /* Name input */
+    .name-field { margin-bottom: 1rem; }
+
+    .name-field label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .name-field input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      color: var(--navy);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .name-field input:focus {
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(77,16,122,0.08);
+    }
+
+    .name-field input::placeholder { color: var(--muted); }
+
+    /* Checkbox */
+    .checkbox-field {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .checkbox-field input[type="checkbox"] {
+      margin-top: 0.3rem;
+      accent-color: var(--navy);
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .checkbox-field label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    /* Confirm button */
+    .btn-confirm {
+      display: block;
+      width: 100%;
+      padding: 0.9rem;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+      text-align: center;
+      margin-top: 1.4rem;
+    }
+    .btn-confirm:hover:not(:disabled) { background: var(--gold); }
+    .btn-confirm:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .modal-disclaimer {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 0.8rem;
     }
 
     /* ── CTA SECTION ── */
@@ -260,8 +434,8 @@
       max-width: 440px;
       margin: 0 auto 2.5rem;
     }
-    .btn-gold  { background: var(--gold); color: var(--white); border: 2px solid var(--gold); padding: 0.85rem 1.9rem; border-radius: 4px; text-decoration: none; font-weight: 500; font-size: 0.93rem; transition: all 0.2s; display: inline-block; margin: 0 0.4rem; }
-    .btn-gold:hover  { background: transparent; color: var(--gold); }
+    .btn-gold { background: var(--gold); color: var(--white); border: 2px solid var(--gold); padding: 0.85rem 1.9rem; border-radius: 4px; text-decoration: none; font-weight: 500; font-size: 0.93rem; transition: all 0.2s; display: inline-block; margin: 0 0.4rem; }
+    .btn-gold:hover { background: transparent; color: var(--gold); }
     .btn-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); padding: 0.85rem 1.9rem; border-radius: 4px; text-decoration: none; font-weight: 500; font-size: 0.93rem; transition: all 0.2s; display: inline-block; margin: 0 0.4rem; }
     .btn-white:hover { background: rgba(255,255,255,0.1); }
 
@@ -283,9 +457,9 @@
     footer a { color: rgba(255,255,255,0.45); text-decoration: none; margin-left: 1.5rem; transition: color 0.2s; }
     footer a:hover { color: var(--gold); }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav ul { display: none; }
+      .modal { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -341,7 +515,7 @@
           <span>— SAT: 1570</span>
           <span>— NOT a Student Athlete</span>
         </div>
-        <a href="#" class="btn-book">Book a session</a>
+        <button class="btn-book" onclick="openModal('Nolan', 'Yale University &rsquo;29', 'Computer Science', 'av1', 'https://calendly.com/placeholder-nolan')">Book a session</button>
       </div>
 
       <!-- Ryan -->
@@ -359,7 +533,7 @@
           <span>— SAT: 1540</span>
           <span>— NOT a Student Athlete</span>
         </div>
-        <a href="#" class="btn-book">Book a session</a>
+        <button class="btn-book" onclick="openModal('Ryan', 'Vanderbilt University &rsquo;30', 'Applied Mathematics &amp; Music', 'av3', 'https://calendly.com/placeholder-ryan')">Book a session</button>
       </div>
 
       <!-- Roman -->
@@ -375,7 +549,7 @@
           <span>— SAT: 1540</span>
           <span>— NOT a Student Athlete</span>
         </div>
-        <a href="#" class="btn-book">Book a session</a>
+        <button class="btn-book" onclick="openModal('Roman', 'University of Chicago &rsquo;30', 'Geophysical Sciences', 'av2', 'https://calendly.com/placeholder-roman')">Book a session</button>
       </div>
 
       <!-- David -->
@@ -392,7 +566,7 @@
           <span>— SAT: 1540</span>
           <span>— NOT a Student Athlete</span>
         </div>
-        <a href="#" class="btn-book">Book a session</a>
+        <button class="btn-book" onclick="openModal('David', 'New York University &rsquo;30', 'Biology', 'av4', 'https://calendly.com/placeholder-david')">Book a session</button>
       </div>
 
     </div>
@@ -403,13 +577,67 @@
     </div>
   </div>
 
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">&#10005;</button>
+
+      <!-- Advisor header -->
+      <div class="modal-advisor-header">
+        <div class="avatar" id="modalAvatar"></div>
+        <div>
+          <h2 id="modalName"></h2>
+          <p id="modalSchool"></p>
+          <p id="modalMajor"></p>
+        </div>
+      </div>
+
+      <!-- Terms & Conditions -->
+      <div class="legal-text">
+        <span class="legal-label">Terms &amp; Conditions</span>
+        By proceeding to book a session, you acknowledge and agree to the following terms:
+        <ol>
+          <li>TalkColleges advisors are current university students acting as peer mentors, not licensed educational or professional counselors. Advice given during sessions is based on personal experience and does not guarantee any admission outcomes.</li>
+          <li>TalkColleges is not liable for the content of any advice given during sessions.</li>
+          <li>Sessions are refundable until 24 hours before the scheduled start time.</li>
+          <li>You agree to conduct yourself in a respectful and professional manner during all sessions.</li>
+          <li>All personal information is handled in accordance with our <a href="#" style="color: var(--navy); text-decoration: underline;">Privacy Policy</a>.</li>
+        </ol>
+      </div>
+
+      <!-- Name input -->
+      <div class="name-field">
+        <label for="studentName">Type your legal name to confirm you have read and agree to the above terms</label>
+        <input type="text" id="studentName" placeholder="Your full name..." oninput="checkReady()" />
+      </div>
+
+      <!-- Checkbox 1: Terms -->
+      <div class="checkbox-field">
+        <input type="checkbox" id="agreeCheck" onchange="checkReady()" />
+        <label for="agreeCheck">I have read and agree to the Terms &amp; Conditions above. <span style="color: red;">*</span></label>
+      </div>
+
+      <!-- Checkbox 2: No Recording -->
+      <div class="checkbox-field">
+        <input type="checkbox" id="recordCheck" onchange="checkReady()" />
+        <label for="recordCheck">Talkcolleges takes the privacy of our advisors very seriously. By checking the box, I agree to the <a href="#" style="color: var(--navy); text-decoration: underline;">Privacy Policy</a>. Violation of this agreement may result in legal action under applicable copyright and privacy laws. <span style="color: red;">*</span></label>
+      </div>
+
+      <!-- Confirm button -->
+      <button class="btn-confirm" id="confirmBtn" disabled onclick="goToBooking()">
+        Confirm &amp; Book Session
+      </button>
+      <p class="modal-disclaimer">You will be redirected to the advisor's scheduling page.</p>
+    </div>
+  </div>
+
   <!-- CTA -->
   <section class="cta-section">
     <span class="page-tag">Join our team</span>
     <h2>Are you a current student at a top university?</h2>
     <p>Share your experience and help the next generation get in — while earning on your own schedule.</p>
-    <a href="https://forms.gle/bgGKJLjvuvqv1REq5" class="btn btn-gold btn-large" target="_blank">Apply to be an advisor</a>
-    <a href="mailto:support@talkcolleges.com" class="btn-white">Contact us!</a>
+    <a href="https://forms.gle/bgGKJLjvuvqv1REq5" class="btn-gold" target="_blank">Apply to be an advisor</a>
+    <a href="index.html" class="btn-white">Learn more</a>
   </section>
 
   <!-- FOOTER -->
@@ -420,12 +648,55 @@
       <a href="index.html#why-us">Why Us</a>
       <a href="book.html">Advisors</a>
       <a href="index.html#become-an-advisor">Become an Advisor</a>
-      <a href="mailto:support@talkcolleges.com">Contact</a>
+      <a href="mailto:hello@talkcolleges.com">Contact</a>
     </div>
     <span>© 2025 TalkColleges. All rights reserved.</span>
   </footer>
 
   <script>
+    let currentCalendlyUrl = '';
+
+    function openModal(name, school, major, avatarClass, calendlyUrl) {
+      currentCalendlyUrl = calendlyUrl;
+      document.getElementById('modalName').textContent = name;
+      document.getElementById('modalSchool').innerHTML = school;
+      document.getElementById('modalMajor').innerHTML = major;
+
+      const avatar = document.getElementById('modalAvatar');
+      avatar.className = 'avatar ' + avatarClass;
+      avatar.textContent = name.charAt(0);
+
+      document.getElementById('studentName').value = '';
+      document.getElementById('agreeCheck').checked = false;
+      document.getElementById('recordCheck').checked = false;
+      document.getElementById('confirmBtn').disabled = true;
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('modalOverlay')) closeModal();
+    }
+
+    function checkReady() {
+      const name = document.getElementById('studentName').value.trim();
+      const agreed = document.getElementById('agreeCheck').checked;
+      const recorded = document.getElementById('recordCheck').checked;
+      document.getElementById('confirmBtn').disabled = name.length < 2 || !agreed || !recorded;
+    }
+
+    function goToBooking() {
+      if (currentCalendlyUrl) {
+        window.open(currentCalendlyUrl, '_blank');
+        closeModal();
+      }
+    }
+
     function filterAdvisors() {
       const query = document.getElementById('searchInput').value.toLowerCase();
       const cards = document.querySelectorAll('.advisor-card');
@@ -444,7 +715,6 @@
 
       const count = document.getElementById('resultsCount');
       const noResults = document.getElementById('noResults');
-
       count.textContent = query ? `${visible} advisor${visible !== 1 ? 's' : ''} found` : '';
       noResults.style.display = visible === 0 ? 'block' : 'none';
     }
