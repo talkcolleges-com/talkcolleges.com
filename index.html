@@ -59,6 +59,8 @@
       color: var(--navy);
       text-decoration: none;
       letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
     }
 
     .logo span { color: var(--gold); }
@@ -83,6 +85,15 @@
       transition: background 0.2s !important;
     }
     .nav-cta:hover { background: var(--gold) !important; }
+
+    /* Mobile Menu Toggle (CSS Only trick) */
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--navy);
+    }
+    #menu-checkbox { display: none; }
 
     /* ── HERO ── */
     .hero {
@@ -293,7 +304,7 @@
     }
 
     /* ── SECTIONS ── */
-    .section { padding: 2rem 6% 4rem; scroll-margin-top: 100px; }
+    .section { padding: 4rem 6%; scroll-margin-top: 100px; }
     .section-alt { background: var(--white); }
 
     .section-tag {
@@ -426,7 +437,6 @@
 
     .check { color: #22a06b; font-size: 1.1rem; }
     .cross { color: #c0392b; font-size: 1.1rem; }
-    .partial { color: var(--gold); font-size: 0.82rem; font-weight: 500; }
 
     /* ── ADVISORS GRID ── */
     .advisors-grid {
@@ -522,10 +532,23 @@
     footer a:hover { color: var(--gold); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; padding: 6rem 5% 3rem; }
-      .hero-right { display: none; }
-      nav ul { display: none; }
+    @media (max-width: 900px) {
+      .menu-toggle { display: block; }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: #f9f5ff;
+        padding: 2rem;
+        gap: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      }
+      /* When hidden checkbox checked, show menu items */
+      #menu-checkbox:checked ~ ul { display: flex; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 6% 3rem; gap: 2rem; }
+      .hero-right { max-width: 500px; margin: 0 auto; width: 100%; }
     }
   </style>
 </head>
@@ -533,7 +556,14 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="logo" style="font-size:1.7rem;"><img src="TalkCollegesIconTransparent.png" style="height:68px;vertical-align:middle;margin-right:6px;" />Talk<span>Colleges</span></a>
+    <a href="#" class="logo" style="font-size:1.7rem;">
+      <img src="TalkCollegesIconTransparent.png" style="height:68px; vertical-align:middle; margin-right:6px;" alt="Icon" />
+      Talk<span>Colleges</span>
+    </a>
+    
+    <input type="checkbox" id="menu-checkbox">
+    <label for="menu-checkbox" class="menu-toggle">&#9776;</label>
+
     <ul>
       <li><a href="#our-process">Our Process</a></li>
       <li><a href="#why-us">Why Us</a></li>
@@ -563,35 +593,35 @@
       <div class="carousel">
         <div class="carousel-track">
           <div class="carousel-slide active">
-            <img src="Harvard.jpg" />
+            <img src="Harvard.jpg" alt="Harvard" />
             <div class="carousel-caption">Lowell House · <strong>Harvard University</strong></div>
           </div>
           <div class="carousel-slide">
-            <img src="Yale.jpg" />
+            <img src="Yale.jpg" alt="Yale" />
             <div class="carousel-caption">Yale Library · <strong>Yale University</strong></div>
           </div>
           <div class="carousel-slide">
-            <img src="Princeton.png" />
+            <img src="Princeton.png" alt="Princeton" />
             <div class="carousel-caption">Nassau Hall · <strong>Princeton University</strong></div>
           </div>
           <div class="carousel-slide">
-            <img src="MIT.jpg" />
+            <img src="MIT.jpg" alt="MIT" />
             <div class="carousel-caption">Great Dome (Minecraft Representation) · <strong>MIT</strong></div>
           </div>
           <div class="carousel-slide">
-            <img src="UChicago.jpeg" />
+            <img src="UChicago.jpeg" alt="UChicago" />
             <div class="carousel-caption">Rockefeller Memorial Chapel · <strong>University of Chicago</strong></div>
           </div>
           <div class="carousel-slide">
-            <img src="UCLA.jpg" />
+            <img src="UCLA.jpg" alt="UCLA" />
             <div class="carousel-caption">Royce Hall · <strong>University of California-Los Angeles</strong></div>
           </div>
           <div class="carousel-slide">
-            <img src="JHU.jpg" />
+            <img src="JHU.jpg" alt="JHU" />
             <div class="carousel-caption">Gilman Hall · <strong>Johns Hopkins University</strong></div>
           </div>
           <div class="carousel-slide">
-            <img src="NYU.jpeg" />
+            <img src="NYU.jpeg" alt="NYU" />
             <div class="carousel-caption">Washington Square Park · <strong>New York University</strong></div>
           </div>
         </div>
@@ -662,7 +692,7 @@
             <td>Peer-to-peer advice from real students</td>
             <td class="highlight-col"><span class="check">✓</span></td>
             <td><span class="cross">✗</span></td>
-                </tr>
+          </tr>
           <tr>
             <td>1-on-1 personalized session</td>
             <td class="highlight-col"><span class="check">✓</span></td>
@@ -670,8 +700,8 @@
           </tr>
           <tr>
             <td>No long-term commitment required</td>
-            <td class="highlight-col"></span><span class="check">✓</span></td>
-            <td><span class="cross">✗</td>
+            <td class="highlight-col"><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
           </tr>
           <tr>
             <td>Essay &amp; interview coaching</td>
@@ -706,7 +736,6 @@
     <a href="book.html" class="btn btn-gold" style="margin-bottom: 2.5rem; display: inline-block;">Browse our full advisors list</a>
 
     <div class="advisors-grid">
-
       <!-- Nolan -->
       <div class="advisor-full-card">
         <div class="avatar av1">N</div>
@@ -714,13 +743,14 @@
         <div class="school-tag">
           <span><strong>Yale University '29</strong></span>
           <span>Computer Science</span>
-	  <span>NOT a student athlete</span>
+          <span>NOT a student athlete</span>
         </div>
         <div class="advisor-stats">
-  <span style="font-size:0.78rem;font-weight:500;color:var(--navy);margin-bottom:0.3rem;">Also admitted to:</span>
-  <span>— Cornell University</span>
-  <span>— University of Virginia</span>
-</div></div>
+          <span style="font-size:0.78rem; font-weight:500; color:var(--navy); margin-bottom:0.3rem;">Also admitted to:</span>
+          <span>— Cornell University</span>
+          <span>— University of Virginia</span>
+        </div>
+      </div>
 
       <!-- Ryan -->
       <div class="advisor-full-card">
@@ -731,8 +761,7 @@
           <span>College of Arts and Science</span>
           <span>Blair School of Music</span>
           <span>Applied Mathematics &amp; Music</span>
-	  <span>NOT a student athlete</span>
-      
+          <span>NOT a student athlete</span>
         </div>
       </div>
 
@@ -743,8 +772,8 @@
         <div class="school-tag">
           <span><strong>University of Chicago '30</strong></span>
           <span>Geophysical Sciences</span>
-	  <span>NOT a Student Athlete</span>
-</div>
+          <span>NOT a Student Athlete</span>
+        </div>
       </div>
 
       <!-- David -->
@@ -755,11 +784,9 @@
           <span><strong>New York University '30</strong></span>
           <span>College of Arts and Sciences</span>
           <span>Biology</span>
-	  <span>NOT a Student Athlete</span>
-        
-</div>
+          <span>NOT a Student Athlete</span>
+        </div>
       </div>
-
     </div>
   </section>
 
@@ -768,9 +795,9 @@
     <span class="section-tag">Join our team</span>
     <div class="advisor-header">
       <h2 class="section-title" style="margin-bottom:0;">Become an advisor!</h2>
-     <a href="https://forms.gle/bgGKJLjvuvqv1REq5" class="btn btn-gold btn-large" target="_blank">Apply to be an advisor</a>
+      <a href="https://forms.gle/bgGKJLjvuvqv1REq5" class="btn btn-gold btn-large" target="_blank">Apply to be an advisor</a>
     </div>
-    <p class="section-sub">Are you a current student at a top university? Share your experience and help the next generation get in — while earning on your own schedule. All Advisors will recieve <strong>70% of tuition!</strong></p>
+    <p class="section-sub">Are you a current student at a top university? Share your experience and help the next generation get in — while earning on your own schedule. All Advisors will receive <strong>70% of tuition!</strong></p>
   </section>
 
   <!-- CTA -->
@@ -792,7 +819,7 @@
       <a href="#become-an-advisor">Become an Advisor</a>
       <a href="mailto:support@talkcolleges.com">Contact</a>
     </div>
-    <span>© 2025 TalkColleges. All rights reserved.</span>
+    <span>© 2026 TalkColleges. All rights reserved.</span>
   </footer>
 
   <script>
@@ -847,11 +874,12 @@
     }
 
     function goToSlide(n) {
+      if(slides.length === 0) return;
       slides[current].classList.remove('active');
       current = (n + slides.length) % slides.length;
       slides[current].classList.add('active');
       progress = 0;
-      lastTime = null;
+      lastTime = performance.now();
       updateIndicators(current);
     }
 
@@ -859,7 +887,10 @@
 
     const carousel = document.querySelector('.carousel');
     carousel.addEventListener('mouseenter', () => { paused = true; });
-    carousel.addEventListener('mouseleave', () => { paused = false; lastTime = null; });
+    carousel.addEventListener('mouseleave', () => { 
+      paused = false; 
+      lastTime = performance.now(); 
+    });
 
     updateIndicators(0);
     requestAnimationFrame(tick);
