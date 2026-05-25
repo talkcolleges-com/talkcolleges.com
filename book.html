@@ -199,7 +199,20 @@
     .av3 { background: #2a5298; }
     .av4 { background: #8b1a1a; }
 
-    .advisor-card h3 { font-size: 1.15rem; font-weight: 500; margin-bottom: 0.3rem; }
+    .card-title-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.3rem;
+    }
+
+    .advisor-card h3 { font-size: 1.15rem; font-weight: 500; }
+    
+    .card-price-tag {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--gold);
+    }
 
     .advisor-card .school-tag {
       display: flex;
@@ -488,7 +501,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="index.html" class="logo" style="font-size:1.7rem;">
       <img src="TalkCollegesIconTransparent.png" style="height:68px;vertical-align:middle;margin-right:6px;" />
@@ -504,14 +516,12 @@
     </ul>
   </nav>
 
-  <!-- PAGE HEADER -->
   <div class="page-header">
     <span class="page-tag">Our advisors</span>
     <h1>Find your perfect advisor</h1>
     <p>Browse current students from top universities who've been exactly where you are.</p>
   </div>
 
-  <!-- SEARCH -->
   <div class="search-bar">
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
@@ -521,8 +531,7 @@
 
   <div class="results-count" id="resultsCount"></div>
 
-  <!-- ADVISORS GRID -->
- <div class="advisors-section">
+  <div class="advisors-section">
     
     <style>
       .advisor-accepted {
@@ -551,7 +560,10 @@
 
       <div class="advisor-card">
         <div class="avatar av1">N</div>
-        <h3>Nolan</h3>
+        <div class="card-title-wrap">
+          <h3>Nolan</h3>
+          <span class="card-price-tag">$115/session</span>
+        </div>
         <div class="school-tag">
           <span>Yale University '29</span>
           <span>Computer Science</span>
@@ -567,31 +579,40 @@
 
       <div class="advisor-card">
         <div class="avatar av3">R</div>
-        <h3>Ryan</h3>
+        <div class="card-title-wrap">
+          <h3>Ryan</h3>
+          <span class="card-price-tag">$105/session</span>
+        </div>
         <div class="school-tag">
           <span>Vanderbilt University '30</span>
           <span>College of Arts and Sciences</span>
           <span>Blair School of Music</span>
           <span>Applied Mathematics &amp; Music</span>
-	  <span>NOT a student athlete</span>
+          <span>NOT a student athlete</span>
         </div>
-                <button class="btn-book" onclick="openModal('Ryan', 'Vanderbilt University &rsquo;30', 'Applied Mathematics &amp; Music', 'av3', 'https://calendly.com/placeholder-ryan')">Book a session</button>
+        <button class="btn-book" onclick="openModal('Ryan', 'Vanderbilt University &rsquo;30', 'Applied Mathematics &amp; Music', 'av3', 'https://calendly.com/placeholder-ryan')">Book a session</button>
       </div>
 
       <div class="advisor-card">
         <div class="avatar av2">R</div>
-        <h3>Roman</h3>
+        <div class="card-title-wrap">
+          <h3>Roman</h3>
+          <span class="card-price-tag">$105/session</span>
+        </div>
         <div class="school-tag">
           <span>University of Chicago '30</span>
           <span>Geophysical Sciences</span>
           <span>NOT a student athlete</span>
-               </div>
+        </div>
         <button class="btn-book" onclick="openModal('Roman', 'University of Chicago &rsquo;30', 'Geophysical Sciences', 'av2', 'https://calendly.com/placeholder-roman')">Book a session</button>
       </div>
 
       <div class="advisor-card">
         <div class="avatar av4">D</div>
-        <h3>David</h3>
+        <div class="card-title-wrap">
+          <h3>David</h3>
+          <span class="card-price-tag">$80/session</span>
+        </div>
         <div class="school-tag">
           <span>New York University '30</span>
           <span>College of Arts and Sciences</span>
@@ -609,18 +630,10 @@
     </div>
   </div>
 
-    <div class="no-results" id="noResults">
-      <h3>No advisors found</h3>
-      <p>Try searching for a different school or major.</p>
-    </div>
-  </div>
-
-  <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
     <div class="modal">
       <button class="modal-close" onclick="closeModal()">&#10005;</button>
 
-      <!-- Advisor header -->
       <div class="modal-advisor-header">
         <div class="avatar" id="modalAvatar"></div>
         <div>
@@ -630,7 +643,6 @@
         </div>
       </div>
 
-      <!-- Terms & Conditions -->
       <div class="legal-text">
         <span class="legal-label">Terms &amp; Conditions</span>
         By proceeding to book a session, you acknowledge and agree to the following terms:
@@ -643,27 +655,23 @@
         </ol>
       </div>
 
-      <!-- Name input -->
       <div class="name-field">
         <label for="studentName">Type your legal name to confirm you have read and agree to the above terms</label>
         <input type="text" id="studentName" placeholder="Your full name..." oninput="checkReady()" />
       </div>
 
-      <!-- Checkbox 1: Terms -->
       <div class="checkbox-field">
         <input type="checkbox" id="agreeCheck" onchange="checkReady()" />
         <label for="agreeCheck">I have read and agree to the Terms &amp; Conditions above. <span style="color: red;">*</span></label>
       </div>
 
-      <!-- Checkbox 2: No Recording -->
       <div class="checkbox-field">
         <input type="checkbox" id="recordCheck" onchange="checkReady()" />
-       <label for="recordCheck">
-  TalkColleges takes the privacy and safety of our student mentors very seriously. By checking this box, I agree to strictly adhere to the <a href="privacypolicy.html#advisor-protection" target="_blank" style="color: var(--navy); text-decoration: underline;">Advisor Privacy Protection rules</a>. I understand that any unauthorized recording or distribution of session details is strictly prohibited. <span style="color: red;">*</span>
-</label>
+        <label for="recordCheck">
+          TalkColleges takes the privacy and safety of our student mentors very seriously. By checking this box, I agree to strictly adhere to the <a href="privacypolicy.html#advisor-protection" target="_blank" style="color: var(--navy); text-decoration: underline;">Advisor Privacy Protection rules</a>. I understand that any unauthorized recording or distribution of session details is strictly prohibited. <span style="color: red;">*</span>
+        </label>
       </div>
 
-      <!-- Confirm button -->
       <button class="btn-confirm" id="confirmBtn" disabled onclick="goToBooking()">
         Confirm &amp; Book Session
       </button>
@@ -671,7 +679,6 @@
     </div>
   </div>
 
-  <!-- CTA -->
   <section class="cta-section">
     <span class="page-tag">Join our team</span>
     <h2>Are you a current student at a top university?</h2>
@@ -680,7 +687,6 @@
     <a href="index.html" class="btn-white">Learn more</a>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <a href="index.html" class="logo">Talk<span>Colleges</span></a>
     <div>
@@ -714,7 +720,7 @@
       document.body.style.overflow = 'hidden';
     }
 
-    function closeModal() {
+  	function closeModal() {
       document.getElementById('modalOverlay').classList.remove('open');
       document.body.style.overflow = '';
     }
