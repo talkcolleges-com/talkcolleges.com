@@ -166,8 +166,9 @@
       gap: 1.3rem;
     }
 
+    /* Matches index.html advisor-full-card style */
     .advisor-card {
-      background: var(--white);
+      background: var(--cream);
       border-radius: 12px;
       padding: 1.8rem;
       border: 1px solid var(--border);
@@ -189,18 +190,26 @@
     .av2 { background: var(--gold); }
     .av3 { background: #2a5298; }
     .av4 { background: #8b1a1a; }
-    .av5 { background: #1a6b3c; }
-    .av6 { background: #b5470b; }
 
     .advisor-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.2rem; }
-    .advisor-card .school-tag { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.9rem; }
-    .advisor-card .specialty {
-      font-size: 0.83rem;
-      color: var(--navy);
-      font-weight: 300;
-      border-top: 1px solid var(--border);
-      padding-top: 0.8rem;
-      margin-bottom: 1rem;
+
+    .advisor-card .school-tag {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .advisor-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0.8rem 0 1.2rem;
     }
 
     .btn-book {
@@ -229,6 +238,32 @@
       margin-bottom: 0.5rem;
       color: var(--navy);
     }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--navy);
+      padding: 5rem 6%;
+      text-align: center;
+    }
+    .cta-section .page-tag { color: var(--gold); }
+    .cta-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin: 0.5rem auto 1rem;
+      max-width: 520px;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      max-width: 440px;
+      margin: 0 auto 2.5rem;
+    }
+    .btn-gold  { background: var(--gold); color: var(--white); border: 2px solid var(--gold); padding: 0.85rem 1.9rem; border-radius: 4px; text-decoration: none; font-weight: 500; font-size: 0.93rem; transition: all 0.2s; display: inline-block; margin: 0 0.4rem; }
+    .btn-gold:hover  { background: transparent; color: var(--gold); }
+    .btn-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); padding: 0.85rem 1.9rem; border-radius: 4px; text-decoration: none; font-weight: 500; font-size: 0.93rem; transition: all 0.2s; display: inline-block; margin: 0 0.4rem; }
+    .btn-white:hover { background: rgba(255,255,255,0.1); }
 
     /* ── FOOTER ── */
     footer {
@@ -264,10 +299,11 @@
     </a>
     <ul>
       <li><a href="index.html#our-process">Our Process</a></li>
+      <li><a href="index.html#why-us">Why Us</a></li>
       <li><a href="book.html">Advisors</a></li>
-      <li><a href="index.html#stories">Stories</a></li>
-      <li><a href="index.html#contact" class="nav-cta">Get started</a></li>
-      <li><a href="index.html#contact" class="nav-cta">Join Us!</a></li>
+      <li><a href="index.html#become-an-advisor">Become an Advisor</a></li>
+      <li><a href="book.html" class="nav-cta">Get started</a></li>
+      <li><a href="https://forms.gle/bgGKJLjvuvqv1REq5" class="nav-cta" target="_blank">Join Us!</a></li>
     </ul>
   </nav>
 
@@ -275,7 +311,7 @@
   <div class="page-header">
     <span class="page-tag">Our advisors</span>
     <h1>Find your perfect advisor</h1>
-    <p>Browse students from top universities who've been exactly where you are.</p>
+    <p>Browse current students from top universities who've been exactly where you are.</p>
   </div>
 
   <!-- SEARCH -->
@@ -292,36 +328,71 @@
   <div class="advisors-section">
     <div class="advisors-grid" id="advisorsGrid">
 
-      <div class="advisor-card" data-name="sarah k" data-school="harvard university computer science">
-        <div class="avatar av1">S</div>
-        <h3>Sarah K.</h3>
-        <div class="school-tag">Harvard University · Computer Science '24</div>
-        <div class="specialty">Specializes in CS essays, research experience, and Ivy League strategy.</div>
-        <a href="https://your-booking-link.com" target="_blank" class="btn-book">Book a session</a>
+      <!-- Nolan -->
+      <div class="advisor-card" data-name="nolan" data-school="yale university computer science">
+        <div class="avatar av1">N</div>
+        <h3>Nolan</h3>
+        <div class="school-tag">
+          <span>Yale University '29</span>
+          <span>Computer Science</span>
+        </div>
+        <div class="advisor-stats">
+          <span>— GPA: 3.95/4.00</span>
+          <span>— SAT: 1570</span>
+          <span>— NOT a Student Athlete</span>
+        </div>
+        <a href="#" class="btn-book">Book a session</a>
       </div>
 
-      <div class="advisor-card" data-name="marcus l" data-school="mit electrical engineering">
-        <div class="avatar av3">M</div>
-        <h3>Marcus L.</h3>
-        <div class="school-tag">MIT · Electrical Engineering '25</div>
-        <div class="specialty">Focuses on STEM applications, extracurricular positioning, and financial aid.</div>
-        <a href="https://your-booking-link.com" target="_blank" class="btn-book">Book a session</a>
+      <!-- Ryan -->
+      <div class="advisor-card" data-name="ryan" data-school="vanderbilt university applied mathematics music">
+        <div class="avatar av3">R</div>
+        <h3>Ryan</h3>
+        <div class="school-tag">
+          <span>Vanderbilt University '30</span>
+          <span>College of Arts and Science</span>
+          <span>Blair School of Music</span>
+          <span>Applied Mathematics &amp; Music</span>
+        </div>
+        <div class="advisor-stats">
+          <span>— GPA: 4.3/4.5</span>
+          <span>— SAT: 1540</span>
+          <span>— NOT a Student Athlete</span>
+        </div>
+        <a href="#" class="btn-book">Book a session</a>
       </div>
 
-      <div class="advisor-card" data-name="aisha t" data-school="stanford university biology">
-        <div class="avatar av2">A</div>
-        <h3>Aisha T.</h3>
-        <div class="school-tag">Stanford University · Biology '24</div>
-        <div class="specialty">Pre-med track, research, and navigating the Stanford application process.</div>
-        <a href="https://your-booking-link.com" target="_blank" class="btn-book">Book a session</a>
+      <!-- Roman -->
+      <div class="advisor-card" data-name="roman" data-school="university of chicago geophysical sciences">
+        <div class="avatar av2">R</div>
+        <h3>Roman</h3>
+        <div class="school-tag">
+          <span>University of Chicago '30</span>
+          <span>Geophysical Sciences</span>
+        </div>
+        <div class="advisor-stats">
+          <span>— GPA: 4.2/4.5</span>
+          <span>— SAT: 1540</span>
+          <span>— NOT a Student Athlete</span>
+        </div>
+        <a href="#" class="btn-book">Book a session</a>
       </div>
 
-      <div class="advisor-card" data-name="james r" data-school="yale university political science">
-        <div class="avatar av4">J</div>
-        <h3>James R.</h3>
-        <div class="school-tag">Yale University · Political Science '25</div>
-        <div class="specialty">Humanities essays, interview prep, and liberal arts college strategy.</div>
-        <a href="https://your-booking-link.com" target="_blank" class="btn-book">Book a session</a>
+      <!-- David -->
+      <div class="advisor-card" data-name="david" data-school="new york university nyu biology">
+        <div class="avatar av4">D</div>
+        <h3>David</h3>
+        <div class="school-tag">
+          <span>New York University '30</span>
+          <span>College of Arts and Sciences</span>
+          <span>Biology</span>
+        </div>
+        <div class="advisor-stats">
+          <span>— GPA: 4.2/4.5</span>
+          <span>— SAT: 1540</span>
+          <span>— NOT a Student Athlete</span>
+        </div>
+        <a href="#" class="btn-book">Book a session</a>
       </div>
 
     </div>
@@ -332,14 +403,24 @@
     </div>
   </div>
 
+  <!-- CTA -->
+  <section class="cta-section">
+    <span class="page-tag">Join our team</span>
+    <h2>Are you a current student at a top university?</h2>
+    <p>Share your experience and help the next generation get in — while earning on your own schedule.</p>
+    <a href="https://forms.gle/bgGKJLjvuvqv1REq5" class="btn btn-gold btn-large" target="_blank">Apply to be an advisor</a>
+    <a href="mailto:support@talkcolleges.com" class="btn-white">Contact us!</a>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <a href="index.html" class="logo">Talk<span>Colleges</span></a>
     <div>
       <a href="index.html#our-process">Our Process</a>
+      <a href="index.html#why-us">Why Us</a>
       <a href="book.html">Advisors</a>
-      <a href="index.html#stories">Stories</a>
-      <a href="mailto:hello@talkcolleges.com">Contact</a>
+      <a href="index.html#become-an-advisor">Become an Advisor</a>
+      <a href="mailto:support@talkcolleges.com">Contact</a>
     </div>
     <span>© 2025 TalkColleges. All rights reserved.</span>
   </footer>
