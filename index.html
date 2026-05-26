@@ -573,7 +573,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="#" class="logo">
       <img src="TalkCollegesIconTransparent.png" style="height:50px; vertical-align:middle; margin-right:6px;" alt="Icon" />
@@ -593,7 +592,6 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
       <div class="hero-tag" style="display:block; text-align:left;">
@@ -657,7 +655,6 @@
     </div>
   </section>
 
-  <!-- OUR PROCESS -->
   <section class="section" id="our-process">
     <span class="section-tag">Our process</span>
     <h2 class="section-title">Simple, personal, and effective</h2>
@@ -687,7 +684,6 @@
     </div>
   </section>
 
-  <!-- WHY US -->
   <section class="section section-alt" id="why-us">
     <span class="section-tag">Why us</span>
     <h2 class="section-title">The smarter way to get in</h2>
@@ -753,7 +749,6 @@
     </div>
   </section>
 
-  <!-- ADVISORS -->
   <section class="section" id="advisors">
     <span class="section-tag">Our advisors</span>
     <h2 class="section-title">Students who've been there</h2>
@@ -761,7 +756,6 @@
     <a href="book.html" class="btn btn-gold" style="margin-bottom: 2.5rem; display: inline-block;">Browse our full advisors list</a>
 
     <div class="advisors-grid">
-      <!-- Nolan -->
       <div class="advisor-full-card">
         <div class="avatar av1">N</div>
         <h3>Nolan</h3>
@@ -777,7 +771,6 @@
         </div>
       </div>
 
-      <!-- Ryan -->
       <div class="advisor-full-card">
         <div class="avatar av3">R</div>
         <h3>Ryan</h3>
@@ -790,7 +783,6 @@
         </div>
       </div>
 
-      <!-- Roman -->
       <div class="advisor-full-card">
         <div class="avatar av2">R</div>
         <h3>Roman</h3>
@@ -801,7 +793,6 @@
         </div>
       </div>
 
-      <!-- David -->
       <div class="advisor-full-card">
         <div class="avatar av4">D</div>
         <h3>David</h3>
@@ -815,7 +806,6 @@
     </div>
   </section>
 
-  <!-- BECOME AN ADVISOR -->
   <section class="section section-alt" id="become-an-advisor">
     <span class="section-tag">Join our team</span>
     <div class="advisor-header">
@@ -825,7 +815,6 @@
     <p class="section-sub">Are you a current student at a top university? Share your experience and help the next generation get in — while earning on your own schedule. All Advisors will receive <strong>70% of tuition!</strong></p>
   </section>
 
-  <!-- CTA -->
   <section class="cta-section" id="contact">
     <span class="section-tag">Ready to start?</span>
     <h2 class="section-title">Your dream school is closer than you think</h2>
@@ -834,7 +823,6 @@
     <a href="book.html" class="btn btn-white">Browse advisors</a>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <a href="#" class="logo">Talk<span>Colleges</span></a>
     <div>
@@ -919,7 +907,7 @@
     updateIndicators(0);
     requestAnimationFrame(tick);
 
-    /* ── ROTATING HEADLINE ── */
+    /* ── ROTATING HEADLINE (WITH FAST REWIND EFFECT) ── */
     const phrases = [
       "A perfect GPA",
       "A 1600 SAT",
@@ -937,6 +925,7 @@
     const inner = document.getElementById('ri');
     const wrapper = document.getElementById('rw');
 
+    // Populate phrases directly without clones
     phrases.forEach(p => {
       const span = document.createElement('span');
       span.className = 'rotating-item';
@@ -944,14 +933,10 @@
       inner.appendChild(span);
     });
 
-    const clone = document.createElement('span');
-    clone.className = 'rotating-item';
-    clone.textContent = phrases[0];
-    inner.appendChild(clone);
-
     let rotCurrent = 0;
+    const normalTransition = 'transform 0.52s cubic-bezier(0.4, 0, 0.2, 1)';
+    const rewindTransition = 'transform 0.35s cubic-bezier(0.76, 0, 0.24, 1)'; // Snappy rewind layout transition style
 
-    // FIX: Grab actual layout text box heights dynamically
     function getLineHeight() {
       const firstItem = inner.querySelector('.rotating-item');
       return firstItem ? firstItem.getBoundingClientRect().height : 0;
@@ -964,33 +949,31 @@
         const w = item.getBoundingClientRect().width;
         if (w > max) max = w;
       });
-      wrapper.style.width = (max + 10) + 'px'; // Soft padding buffer
+      wrapper.style.width = (max + 10) + 'px';
     }
 
     function rotateNext() {
-      rotCurrent++;
       const lineHeight = getLineHeight();
-      inner.style.transform = `translateY(-${rotCurrent * lineHeight}px)`;
 
-      if (rotCurrent === phrases.length) {
-        setTimeout(() => {
-          inner.style.transition = 'none';
-          inner.style.transform = 'translateY(0)';
-          rotCurrent = 0;
-          requestAnimationFrame(() => requestAnimationFrame(() => {
-            inner.style.transition = 'transform 0.52s cubic-bezier(0.4,0,0.2,1)';
-          }));
-        }, 550);
+      if (rotCurrent < phrases.length - 1) {
+        // Step forward normally
+        rotCurrent++;
+        inner.style.transition = normalTransition;
+        inner.style.transform = `translateY(-${rotCurrent * lineHeight}px)`;
+      } else {
+        // On the final phrase ("cure to cancer"), trigger rapid tape rewind upwards back to index 0
+        rotCurrent = 0;
+        inner.style.transition = rewindTransition;
+        inner.style.transform = 'translateY(0px)';
       }
     }
 
     window.addEventListener('load', () => {
       setWrapperWidth();
-      inner.style.transition = 'transform 0.52s cubic-bezier(0.4,0,0.2,1)';
-      setInterval(rotateNext, 2800);
+      inner.style.transition = normalTransition;
+      setInterval(rotateNext, 2800); // Ensures final slide sits perfectly on view for 2.8s before rewinding
     });
 
-    // Recalculate dimensions safely if browser window is resized
     window.addEventListener('resize', setWrapperWidth);
   </script>
 
