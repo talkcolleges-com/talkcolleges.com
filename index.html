@@ -39,7 +39,7 @@
       to   { opacity: 1; }
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -62,7 +62,6 @@
       display: flex;
       align-items: center;
     }
-
     .logo span { color: var(--gold); }
 
     nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
@@ -86,7 +85,6 @@
     }
     .nav-cta:hover { background: var(--gold) !important; }
 
-    /* Mobile Menu Toggle (CSS Only trick) */
     .menu-toggle {
       display: none;
       font-size: 1.8rem;
@@ -95,7 +93,7 @@
     }
     #menu-checkbox { display: none; }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       min-height: 100vh;
       display: grid;
@@ -140,7 +138,6 @@
       opacity: 0;
       animation: fadeUp 0.6s ease forwards 0.25s;
     }
-
     .hero h1 em { font-style: italic; color: var(--gold); }
 
     .hero-desc {
@@ -171,19 +168,14 @@
       transition: all 0.2s;
       cursor: pointer;
     }
-
-    .btn-large {
-      padding: 1.2rem 3rem;
-      font-size: 1.1rem;
-      border-radius: 8px;
-    }
-
+    .btn-large { padding: 1.2rem 3rem; font-size: 1.1rem; border-radius: 8px; }
     .btn-gold  { background: var(--gold); color: var(--white); border: 2px solid var(--gold); }
     .btn-gold:hover  { background: transparent; color: var(--gold); }
     .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
     .btn-outline:hover { background: var(--navy); color: var(--white); }
+    .btn-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); }
+    .btn-white:hover { background: rgba(255,255,255,0.1); }
 
-    /* Hero right */
     .hero-right {
       display: flex;
       flex-direction: column;
@@ -206,42 +198,21 @@
     .av3 { background: #2a5298; }
     .av4 { background: #8b1a1a; }
 
-    /* ── CAROUSEL ── */
+    /* CAROUSEL */
     .carousel {
       position: relative;
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 8px 40px rgba(77,16,122,0.2);
     }
-
     .carousel-track { position: relative; }
-
-    .carousel-slide {
-      display: none;
-      position: absolute;
-      top: 0; left: 0; width: 100%;
-      animation: none;
-    }
-
-    .carousel-slide.active {
-      display: block;
-      position: relative;
-      animation: slideIn 0.4s ease;
-    }
-
+    .carousel-slide { display: none; position: absolute; top: 0; left: 0; width: 100%; }
+    .carousel-slide.active { display: block; position: relative; animation: slideIn 0.4s ease; }
     @keyframes slideIn {
       from { opacity: 0; transform: translateX(40px); }
       to   { opacity: 1; transform: translateX(0); }
     }
-
-    .carousel-slide img {
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-      border-radius: 16px;
-      display: block;
-    }
-
+    .carousel-slide img { width: 100%; height: 380px; object-fit: cover; border-radius: 16px; display: block; }
     .carousel-caption {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -252,300 +223,92 @@
       font-weight: 500;
       border-radius: 0 0 16px 16px;
     }
-
     .carousel-btn {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 50%; transform: translateY(-50%);
       background: rgba(255,255,255,0.9);
-      border: none;
-      border-radius: 50%;
+      border: none; border-radius: 50%;
       width: 38px; height: 38px;
-      font-size: 1rem;
-      cursor: pointer;
-      color: #4D107A;
-      transition: background 0.2s;
-      z-index: 10;
+      font-size: 1rem; cursor: pointer;
+      color: #4D107A; transition: background 0.2s; z-index: 10;
     }
     .carousel-btn:hover { background: white; }
     .carousel-btn.prev { left: 12px; }
     .carousel-btn.next { right: 12px; }
-
-    /* ── PROGRESS INDICATORS ── */
     .carousel-indicators {
-      position: absolute;
-      bottom: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      z-index: 10;
+      position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 6px; z-index: 10;
     }
-
-    .indicator {
-      height: 6px;
-      border-radius: 3px;
-      cursor: pointer;
-      overflow: hidden;
-      transition: width 0.3s ease;
-      background: rgba(255,255,255,0.35);
-    }
-
+    .indicator { height: 6px; border-radius: 3px; cursor: pointer; overflow: hidden; transition: width 0.3s ease; background: rgba(255,255,255,0.35); }
     .indicator.done     { width: 6px; }
     .indicator.active   { width: 40px; position: relative; }
     .indicator.upcoming { width: 6px; }
+    .indicator-fill { height: 100%; width: 0%; background: white; border-radius: 3px; }
 
-    .indicator-fill {
-      height: 100%;
-      width: 0%;
-      background: white;
-      border-radius: 3px;
-    }
-
-    /* ── SECTIONS ── */
+    /* SECTIONS */
     .section { padding: 4rem 6%; scroll-margin-top: 100px; }
     .section-alt { background: var(--white); }
-
-    .section-tag {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: block;
-      margin-bottom: 0.7rem;
-    }
-
-    .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.9rem;
-    }
-
-    .section-sub {
-      font-size: 1rem;
-      color: var(--muted);
-      font-weight: 300;
-      max-width: 480px;
-      margin-bottom: 3.5rem;
-    }
+    .section-tag { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.7rem; }
+    .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 0.9rem; }
+    .section-sub { font-size: 1rem; color: var(--muted); font-weight: 300; max-width: 480px; margin-bottom: 3.5rem; }
     .section-sub strong { font-weight: 700; color: var(--navy); }
 
-    /* ── OUR PROCESS ── */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .step {
-      background: var(--cream);
-      border-radius: 10px;
-      padding: 2rem 1.7rem;
-      border: 1px solid var(--border);
-      transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
-    }
+    /* OUR PROCESS */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.5rem; }
+    .step { background: var(--cream); border-radius: 10px; padding: 2rem 1.7rem; border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; }
     .step:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(15,31,56,0.1); }
-
-    .step-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.5rem;
-      color: var(--navy);
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-
+    .step-num { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--navy); line-height: 1; margin-bottom: 1rem; }
     .step h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--navy); }
     .step p  { font-size: 0.88rem; color: var(--navy); font-weight: 300; }
     .step p strong { font-weight: 700; color: var(--navy); }
 
-    /* ── WHY US COMPARISON TABLE ── */
-    .comparison-wrapper {
-      overflow-x: auto;
-      border-radius: 14px;
-      box-shadow: 0 4px 32px rgba(77,16,122,0.10);
-    }
-
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 560px;
-      background: var(--white);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-
-    .comparison-table thead tr {
-      background: var(--navy);
-    }
-
-    .comparison-table thead th {
-      padding: 1.1rem 1.4rem;
-      font-family: 'DM Serif Display', serif;
-      font-size: 1rem;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-      color: var(--white);
-      text-align: center;
-    }
-
-    .comparison-table thead th:first-child {
-      text-align: left;
-      color: rgba(255,255,255,0.55);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      width: 40%;
-    }
-
-    .comparison-table thead th.highlight-col {
-      background: var(--gold);
-      color: var(--white);
-    }
-
-    .comparison-table tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: background 0.15s;
-    }
+    /* WHY US */
+    .comparison-wrapper { overflow-x: auto; border-radius: 14px; box-shadow: 0 4px 32px rgba(77,16,122,0.10); }
+    .comparison-table { width: 100%; border-collapse: collapse; min-width: 560px; background: var(--white); border-radius: 14px; overflow: hidden; }
+    .comparison-table thead tr { background: var(--navy); }
+    .comparison-table thead th { padding: 1.1rem 1.4rem; font-family: 'DM Serif Display', serif; font-size: 1rem; font-weight: 400; letter-spacing: -0.01em; color: var(--white); text-align: center; }
+    .comparison-table thead th:first-child { text-align: left; color: rgba(255,255,255,0.55); font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; width: 40%; }
+    .comparison-table thead th.highlight-col { background: var(--gold); color: var(--white); }
+    .comparison-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
     .comparison-table tbody tr:last-child { border-bottom: none; }
     .comparison-table tbody tr:hover { background: var(--cream); }
-
-    .comparison-table tbody td {
-      padding: 1rem 1.4rem;
-      font-size: 0.88rem;
-      text-align: center;
-      color: var(--muted);
-    }
-
-    .comparison-table tbody td:first-child {
-      text-align: left;
-      font-weight: 500;
-      color: var(--navy);
-      font-size: 0.9rem;
-      width: 40%;
-    }
-
-    .comparison-table tbody td.highlight-col {
-      background: rgba(209,179,101,0.07);
-    }
-
+    .comparison-table tbody td { padding: 1rem 1.4rem; font-size: 0.88rem; text-align: center; color: var(--muted); }
+    .comparison-table tbody td:first-child { text-align: left; font-weight: 500; color: var(--navy); font-size: 0.9rem; width: 40%; }
+    .comparison-table tbody td.highlight-col { background: rgba(209,179,101,0.07); }
     .check { color: #22a06b; font-size: 1.1rem; }
     .cross { color: #c0392b; font-size: 1.1rem; }
 
-    /* ── ADVISORS GRID ── */
-    .advisors-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.3rem;
-    }
-
-    .advisor-full-card {
-      background: var(--cream);
-      border-radius: 12px;
-      padding: 1.8rem;
-      border: 1px solid var(--border);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+    /* ADVISORS GRID */
+    .advisors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.3rem; }
+    .advisor-full-card { background: var(--cream); border-radius: 12px; padding: 1.8rem; border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; }
     .advisor-full-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(15,31,56,0.1); }
-
     .advisor-full-card .avatar { width: 54px; height: 54px; font-size: 1.3rem; margin-bottom: 1rem; }
     .advisor-full-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.2rem; }
-    .advisor-full-card .school-tag {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.9rem;
-      line-height: 1.6;
-    }
+    .advisor-full-card .school-tag { display: flex; flex-direction: column; align-items: flex-start; font-size: 0.8rem; color: var(--muted); margin-bottom: 0.9rem; line-height: 1.6; }
+    .advisor-offers { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.8rem; color: var(--muted); margin: 0.8rem 0; }
+    .advisor-offers-label { font-size: 0.78rem; font-weight: 500; color: var(--navy); margin-bottom: 0.3rem; }
 
-    .advisor-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin: 0.8rem 0;
-    }
+    /* BECOME AN ADVISOR */
+    .advisor-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.9rem; }
 
-    /* ── BECOME AN ADVISOR ── */
-    .advisor-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 0.9rem;
-    }
-
-    /* ── CTA SECTION ── */
-    .cta-section {
-      background: var(--navy);
-      padding: 6rem 6%;
-      text-align: center;
-    }
-
+    /* CTA */
+    .cta-section { background: var(--navy); padding: 6rem 6%; text-align: center; }
     .cta-section .section-tag { color: var(--gold); }
-
-    .cta-section .section-title {
-      color: var(--white);
-      max-width: 520px;
-      margin: 0 auto 1rem;
-    }
-
-    .cta-section p {
-      color: rgba(255,255,255,0.6);
-      font-weight: 300;
-      max-width: 440px;
-      margin: 0 auto 2.5rem;
-    }
-
+    .cta-section .section-title { color: var(--white); max-width: 520px; margin: 0 auto 1rem; }
+    .cta-section p { color: rgba(255,255,255,0.6); font-weight: 300; max-width: 440px; margin: 0 auto 2.5rem; }
     .cta-section .btn-gold { margin: 0 0.4rem; }
 
-    .btn-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); }
-    .btn-white:hover { background: rgba(255,255,255,0.1); }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #080f1c;
-      color: rgba(255,255,255,0.45);
-      padding: 2.2rem 6%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.82rem;
-    }
-
+    /* FOOTER */
+    footer { background: #080f1c; color: rgba(255,255,255,0.45); padding: 2.2rem 6%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; }
     footer .logo { color: rgba(255,255,255,0.7); font-size: 1.1rem; }
     footer .logo span { color: var(--gold); }
-
     footer a { color: rgba(255,255,255,0.45); text-decoration: none; margin-left: 1.5rem; transition: color 0.2s; }
     footer a:hover { color: var(--gold); }
 
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
     @media (max-width: 900px) {
       .menu-toggle { display: block; }
-      nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%; left: 0; right: 0;
-        background: #f9f5ff;
-        padding: 2rem;
-        gap: 1.5rem;
-        border-bottom: 1px solid var(--border);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-      }
-      /* When hidden checkbox checked, show menu items */
+      nav ul { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: #f9f5ff; padding: 2rem; gap: 1.5rem; border-bottom: 1px solid var(--border); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
       #menu-checkbox:checked ~ ul { display: flex; }
       .hero { grid-template-columns: 1fr; padding: 7rem 6% 3rem; gap: 2rem; }
       .hero-right { max-width: 500px; margin: 0 auto; width: 100%; }
@@ -554,16 +317,13 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="#" class="logo" style="font-size:1.7rem;">
-      <img src="TalkCollegesIconTransparent.png" style="height:68px; vertical-align:middle; margin-right:6px;" alt="Icon" />
+      <img src="TalkCollegesIconTransparent.png" style="height:68px;vertical-align:middle;margin-right:6px;" alt="TalkColleges Icon" />
       Talk<span>Colleges</span>
     </a>
-    
-    <input type="checkbox" id="menu-checkbox">
+    <input type="checkbox" id="menu-checkbox" />
     <label for="menu-checkbox" class="menu-toggle">&#9776;</label>
-
     <ul>
       <li><a href="#our-process">Our Process</a></li>
       <li><a href="#why-us">Why Us</a></li>
@@ -574,7 +334,6 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
       <div class="hero-tag" style="display:block; text-align:left;">
@@ -632,12 +391,10 @@
     </div>
   </section>
 
-  <!-- OUR PROCESS -->
   <section class="section" id="our-process">
     <span class="section-tag">Our process</span>
     <h2 class="section-title">Simple, personal, and effective</h2>
     <p class="section-sub">No corporate consultants. Just real students who've been exactly where you are.</p>
-
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
@@ -662,12 +419,10 @@
     </div>
   </section>
 
-  <!-- WHY US -->
   <section class="section section-alt" id="why-us">
     <span class="section-tag">Why us</span>
     <h2 class="section-title">The smarter way to get in</h2>
     <p class="section-sub">See how we compare with corporate admission consultants.</p>
-
     <div class="comparison-wrapper">
       <table class="comparison-table">
         <thead>
@@ -728,7 +483,6 @@
     </div>
   </section>
 
-  <!-- ADVISORS -->
   <section class="section" id="advisors">
     <span class="section-tag">Our advisors</span>
     <h2 class="section-title">Students who've been there</h2>
@@ -736,6 +490,7 @@
     <a href="book.html" class="btn btn-gold" style="margin-bottom: 2.5rem; display: inline-block;">Browse our full advisors list</a>
 
     <div class="advisors-grid">
+
       <!-- Nolan -->
       <div class="advisor-full-card">
         <div class="avatar av1">N</div>
@@ -743,10 +498,10 @@
         <div class="school-tag">
           <span><strong>Yale University '29</strong></span>
           <span>Computer Science</span>
-          <span>NOT a student athlete</span>
+          <span>Not a student athlete</span>
         </div>
-        <div class="advisor-stats">
-          <span style="font-size:0.78rem; font-weight:500; color:var(--navy); margin-bottom:0.3rem;">Also admitted to:</span>
+        <div class="advisor-offers">
+          <span class="advisor-offers-label">Also admitted to:</span>
           <span>— Cornell University</span>
           <span>— University of Virginia</span>
         </div>
@@ -761,7 +516,7 @@
           <span>College of Arts and Science</span>
           <span>Blair School of Music</span>
           <span>Applied Mathematics &amp; Music</span>
-          <span>NOT a student athlete</span>
+          <span>Not a student athlete</span>
         </div>
       </div>
 
@@ -772,7 +527,7 @@
         <div class="school-tag">
           <span><strong>University of Chicago '30</strong></span>
           <span>Geophysical Sciences</span>
-          <span>NOT a Student Athlete</span>
+          <span>Not a student athlete</span>
         </div>
       </div>
 
@@ -784,23 +539,22 @@
           <span><strong>New York University '30</strong></span>
           <span>College of Arts and Sciences</span>
           <span>Biology</span>
-          <span>NOT a Student Athlete</span>
+          <span>Not a student athlete</span>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- BECOME AN ADVISOR -->
   <section class="section section-alt" id="become-an-advisor">
     <span class="section-tag">Join our team</span>
     <div class="advisor-header">
       <h2 class="section-title" style="margin-bottom:0;">Become an advisor!</h2>
       <a href="https://forms.gle/bgGKJLjvuvqv1REq5" class="btn btn-gold btn-large" target="_blank">Apply to be an advisor</a>
     </div>
-    <p class="section-sub">Are you a current student at a top university? Share your experience and help the next generation get in — while earning on your own schedule. All Advisors will receive <strong>70% of tuition!</strong></p>
+    <p class="section-sub">Are you a current student at a top university? Share your experience and help the next generation get in — while earning on your own schedule. All advisors will receive <strong>70% of tuition!</strong></p>
   </section>
 
-  <!-- CTA -->
   <section class="cta-section" id="contact">
     <span class="section-tag">Ready to start?</span>
     <h2 class="section-title">Your dream school is closer than you think</h2>
@@ -809,7 +563,6 @@
     <a href="book.html" class="btn btn-white">Browse advisors</a>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <a href="#" class="logo">Talk<span>Colleges</span></a>
     <div>
@@ -817,7 +570,8 @@
       <a href="#why-us">Why Us</a>
       <a href="#advisors">Advisors</a>
       <a href="#become-an-advisor">Become an Advisor</a>
-      <a href="privacypolicy.html">Privacy Policy</a> <a href="mailto:support@talkcolleges.com">Contact</a>
+      <a href="privacypolicy.html">Privacy Policy</a>
+      <a href="mailto:support@talkcolleges.com">Contact</a>
     </div>
     <span>© 2026 TalkColleges. All rights reserved.</span>
   </footer>
@@ -826,10 +580,7 @@
     const slides = document.querySelectorAll('.carousel-slide');
     const indicatorContainer = document.getElementById('indicators');
     const DURATION = 3500;
-    let current = 0;
-    let paused = false;
-    let progress = 0;
-    let lastTime = null;
+    let current = 0, paused = false, progress = 0, lastTime = null;
 
     slides.forEach((_, i) => {
       const ind = document.createElement('div');
@@ -844,16 +595,9 @@
     function updateIndicators(newIndex) {
       getIndicators().forEach((ind, i) => {
         ind.className = 'indicator';
-        if (i < newIndex) {
-          ind.classList.add('done');
-          ind.querySelector('.indicator-fill').style.width = '100%';
-        } else if (i === newIndex) {
-          ind.classList.add('active');
-          ind.querySelector('.indicator-fill').style.width = '0%';
-        } else {
-          ind.classList.add('upcoming');
-          ind.querySelector('.indicator-fill').style.width = '0%';
-        }
+        if (i < newIndex) { ind.classList.add('done'); ind.querySelector('.indicator-fill').style.width = '100%'; }
+        else if (i === newIndex) { ind.classList.add('active'); ind.querySelector('.indicator-fill').style.width = '0%'; }
+        else { ind.classList.add('upcoming'); ind.querySelector('.indicator-fill').style.width = '0%'; }
       });
     }
 
@@ -863,23 +607,18 @@
         progress += timestamp - lastTime;
         const fill = getIndicators()[current]?.querySelector('.indicator-fill');
         if (fill) fill.style.width = Math.min((progress / DURATION) * 100, 100) + '%';
-        if (progress >= DURATION) {
-          moveCarousel(1);
-          requestAnimationFrame(tick);
-          return;
-        }
+        if (progress >= DURATION) { moveCarousel(1); requestAnimationFrame(tick); return; }
       }
       lastTime = timestamp;
       requestAnimationFrame(tick);
     }
 
     function goToSlide(n) {
-      if(slides.length === 0) return;
+      if (slides.length === 0) return;
       slides[current].classList.remove('active');
       current = (n + slides.length) % slides.length;
       slides[current].classList.add('active');
-      progress = 0;
-      lastTime = performance.now();
+      progress = 0; lastTime = performance.now();
       updateIndicators(current);
     }
 
@@ -887,10 +626,7 @@
 
     const carousel = document.querySelector('.carousel');
     carousel.addEventListener('mouseenter', () => { paused = true; });
-    carousel.addEventListener('mouseleave', () => { 
-      paused = false; 
-      lastTime = performance.now(); 
-    });
+    carousel.addEventListener('mouseleave', () => { paused = false; lastTime = performance.now(); });
 
     updateIndicators(0);
     requestAnimationFrame(tick);
