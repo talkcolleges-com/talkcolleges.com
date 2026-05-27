@@ -166,7 +166,7 @@
       line-height: 1.3;
       display: block;
     }
-    
+
     .hero-desc {
       font-size: 1.05rem;
       color: var(--muted);
@@ -211,7 +211,7 @@
     .hero-right {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0;
       opacity: 0;
       animation: fadeIn 0.9s ease forwards 0.7s;
     }
@@ -230,10 +230,31 @@
     .av3 { background: #2a5298; }
     .av4 { background: #8b1a1a; }
 
+    /* ── CAROUSEL LABEL ── */
+    .carousel-label {
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.65rem 1rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      border-radius: 16px 16px 0 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .carousel-label strong {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
     /* ── IMAGE CAROUSEL ── */
     .carousel {
       position: relative;
-      border-radius: 16px;
+      border-radius: 0 0 16px 16px;
       overflow: hidden;
       box-shadow: 0 8px 40px rgba(77,16,122,0.2);
     }
@@ -261,7 +282,6 @@
       width: 100%;
       height: 380px;
       object-fit: cover;
-      border-radius: 16px;
       display: block;
     }
 
@@ -273,7 +293,6 @@
       padding: 2rem 1.5rem 1.2rem;
       font-size: 0.9rem;
       font-weight: 500;
-      border-radius: 0 0 16px 16px;
     }
 
     .carousel-btn {
@@ -315,7 +334,7 @@
     }
 
     .indicator.done     { width: 6px; }
-    .indicator.active   { width: 40px; position: relative; }
+    .indicator.active   { width: 6px; position: relative; }
     .indicator.upcoming { width: 6px; }
 
     .indicator-fill {
@@ -613,39 +632,41 @@
     </div>
 
     <div class="hero-right">
+      <div class="carousel-label" id="carousel-label">We have Advisors from&hellip;</div>
       <div class="carousel">
         <div class="carousel-track">
           <div class="carousel-slide active">
             <img src="Harvard.jpg" alt="Harvard" />
-            <div class="carousel-caption">Lowell House · <strong>Harvard University</strong></div>
+            <div class="carousel-caption"><strong>Harvard University</strong> (Lowell House)</div>
           </div>
           <div class="carousel-slide">
             <img src="Yale.jpg" alt="Yale" />
-            <div class="carousel-caption">Yale Library · <strong>Yale University</strong></div>
-          </div>
-          <div class="carousel-slide">
-            <img src="Princeton.png" alt="Princeton" />
-            <div class="carousel-caption">Nassau Hall · <strong>Princeton University</strong></div>
-          </div>
-          <div class="carousel-slide">
-            <img src="MIT.jpg" alt="MIT" />
-            <div class="carousel-caption">Great Dome (Minecraft Representation) · <strong>MIT</strong></div>
-          </div>
-          <div class="carousel-slide">
-            <img src="UChicago.jpeg" alt="UChicago" />
-            <div class="carousel-caption">Rockefeller Memorial Chapel · <strong>University of Chicago</strong></div>
-          </div>
-          <div class="carousel-slide">
-            <img src="UCLA.jpg" alt="UCLA" />
-            <div class="carousel-caption">Royce Hall · <strong>University of California-Los Angeles</strong></div>
-          </div>
-          <div class="carousel-slide">
-            <img src="JHU.jpg" alt="JHU" />
-            <div class="carousel-caption">Gilman Hall · <strong>Johns Hopkins University</strong></div>
+            <div class="carousel-caption"><strong>Yale University</strong> (Yale Library)</div>
           </div>
           <div class="carousel-slide">
             <img src="NYU.jpeg" alt="NYU" />
-            <div class="carousel-caption">Washington Square Park · <strong>New York University</strong></div>
+            <div class="carousel-caption"><strong>New York University</strong> (Washington Square Park)</div>
+
+          </div>
+          <div class="carousel-slide">
+            <img src="Tufts.png" alt="Tufts" />
+            <div class="carousel-caption"><strong>Tufts University</strong> (Jumbo Statue)</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="BU.jpg" alt="BU" />
+            <div class="carousel-caption"><strong>Boston University</strong> (Duan Family Center-CDS)</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="Tulane.jpg" alt="Tulane" />
+            <div class="carousel-caption"><strong>Tulane University</strong> (Gibson Hall)</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="Villanova.jpg" alt="Villanova" />
+            <div class="carousel-caption"><strong>Villanova University</strong> (St. Thomas Church)</div>
+          </div>
+          <div class="carousel-slide">
+            <img src="Clemson.jpg" alt="Clemson" />
+            <div class="carousel-caption"><strong>Clemson University</strong> (Tillman Hall)</div>
           </div>
         </div>
         <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#8592;</button>
@@ -837,14 +858,16 @@
   </footer>
 
   <script>
-    /* ── IMAGE CAROUSEL ── */
+    /* ── IMAGE CAROUSEL (manual only — no autoscroll) ── */
     const slides = document.querySelectorAll('.carousel-slide');
     const indicatorContainer = document.getElementById('indicators');
-    const DURATION = 3500;
+    const carouselLabel = document.getElementById('carousel-label');
+
+    // Indices 0 (Harvard) and 1 (Yale) → "We have Advisors from…"
+    // All others → "but also from…"
+    const prestigeSet = new Set([0, 1]);
+
     let current = 0;
-    let paused = false;
-    let progress = 0;
-    let lastTime = null;
 
     slides.forEach((_, i) => {
       const ind = document.createElement('div');
@@ -856,36 +879,26 @@
 
     function getIndicators() { return document.querySelectorAll('.indicator'); }
 
-    function updateIndicators(newIndex) {
-      getIndicators().forEach((ind, i) => {
-        ind.className = 'indicator';
-        if (i < newIndex) {
-          ind.classList.add('done');
-          ind.querySelector('.indicator-fill').style.width = '100%';
-        } else if (i === newIndex) {
-          ind.classList.add('active');
-          ind.querySelector('.indicator-fill').style.width = '0%';
-        } else {
-          ind.classList.add('upcoming');
-          ind.querySelector('.indicator-fill').style.width = '0%';
-        }
-      });
+   function updateIndicators(index) {
+  getIndicators().forEach((ind, i) => {
+    ind.className = 'indicator';
+    if (i === index) {
+      ind.classList.add('active');
+      ind.querySelector('.indicator-fill').style.cssText = 'width:100%; background:white;';
+    } else {
+      ind.classList.add('upcoming');
+      ind.querySelector('.indicator-fill').style.cssText = 'width:0%; background:white;';
     }
-
-    function tick(timestamp) {
-      if (!lastTime) lastTime = timestamp;
-      if (!paused) {
-        progress += timestamp - lastTime;
-        const fill = getIndicators()[current]?.querySelector('.indicator-fill');
-        if (fill) fill.style.width = Math.min((progress / DURATION) * 100, 100) + '%';
-        if (progress >= DURATION) {
-          moveCarousel(1);
-          requestAnimationFrame(tick);
-          return;
-        }
-      }
-      lastTime = timestamp;
-      requestAnimationFrame(tick);
+  });
+}
+    function updateLabel(index) {
+      carouselLabel.style.opacity = '0';
+      setTimeout(() => {
+        carouselLabel.innerHTML = prestigeSet.has(index)
+          ? 'We have Advisors from&hellip;'
+          : 'but also from&hellip;';
+        carouselLabel.style.opacity = '1';
+      }, 200);
     }
 
     function goToSlide(n) {
@@ -893,25 +906,20 @@
       slides[current].classList.remove('active');
       current = (n + slides.length) % slides.length;
       slides[current].classList.add('active');
-      progress = 0;
-      lastTime = performance.now();
       updateIndicators(current);
+      updateLabel(current);
     }
 
     function moveCarousel(dir) { goToSlide(current + dir); }
 
-    const carousel = document.querySelector('.carousel');
-    carousel.addEventListener('mouseenter', () => { paused = true; });
-    carousel.addEventListener('mouseleave', () => { paused = false; lastTime = performance.now(); });
-
     updateIndicators(0);
-    requestAnimationFrame(tick);
+    updateLabel(0);
 
     /* ── ROTATING HEADLINE (WITH FAST REWIND EFFECT) ── */
     const phrases = [
       "A perfect GPA",
       "A 1600 SAT",
-      "Won international awards‎ ",
+      "Won international awards\u200e ",
       "Leadership positions",
       "Published research papers",
       "Started a Non-Profit",
@@ -925,7 +933,6 @@
     const inner = document.getElementById('ri');
     const wrapper = document.getElementById('rw');
 
-    // Populate phrases directly without clones
     phrases.forEach(p => {
       const span = document.createElement('span');
       span.className = 'rotating-item';
@@ -935,7 +942,7 @@
 
     let rotCurrent = 0;
     const normalTransition = 'transform 0.52s cubic-bezier(0.4, 0, 0.2, 1)';
-    const rewindTransition = 'transform 0.35s cubic-bezier(0.76, 0, 0.24, 1)'; // Snappy rewind layout transition style
+    const rewindTransition = 'transform 0.35s cubic-bezier(0.76, 0, 0.24, 1)';
 
     function getLineHeight() {
       const firstItem = inner.querySelector('.rotating-item');
@@ -954,14 +961,11 @@
 
     function rotateNext() {
       const lineHeight = getLineHeight();
-
       if (rotCurrent < phrases.length - 1) {
-        // Step forward normally
         rotCurrent++;
         inner.style.transition = normalTransition;
         inner.style.transform = `translateY(-${rotCurrent * lineHeight}px)`;
       } else {
-        // On the final phrase ("cure to cancer"), trigger rapid tape rewind upwards back to index 0
         rotCurrent = 0;
         inner.style.transition = rewindTransition;
         inner.style.transform = 'translateY(0px)';
@@ -971,7 +975,7 @@
     window.addEventListener('load', () => {
       setWrapperWidth();
       inner.style.transition = normalTransition;
-      setInterval(rotateNext, 2800); // Ensures final slide sits perfectly on view for 2.8s before rewinding
+      setInterval(rotateNext, 2800);
     });
 
     window.addEventListener('resize', setWrapperWidth);
