@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TalkColleges — Real Advice from Real Students</title>
+  <meta name="description" content="Connecting high schoolers with students advisors from their dream college." />
   <link rel="icon" type="image/png" href="TCFavicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -169,7 +170,7 @@
 
     .hero-desc {
       font-size: 1.05rem;
-      color: var(--muted);
+      color: var(--navy);
       font-weight: 300;
       max-width: 440px;
       margin-bottom: 2.2rem;
@@ -270,13 +271,20 @@
     .carousel-slide.active {
       display: block;
       position: relative;
-      animation: slideIn 0.4s ease;
     }
 
-    @keyframes slideIn {
+    @keyframes slideInRight {
       from { opacity: 0; transform: translateX(40px); }
       to   { opacity: 1; transform: translateX(0); }
     }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .carousel-slide.slide-right { animation: slideInRight 0.4s ease; }
+    .carousel-slide.slide-left  { animation: slideInLeft  0.4s ease; }
 
     .carousel-slide img {
       width: 100%;
@@ -325,17 +333,13 @@
     }
 
     .indicator {
+      width: 6px;
       height: 6px;
       border-radius: 3px;
       cursor: pointer;
       overflow: hidden;
-      transition: width 0.3s ease;
       background: rgba(255,255,255,0.35);
     }
-
-    .indicator.done     { width: 6px; }
-    .indicator.active   { width: 6px; position: relative; }
-    .indicator.upcoming { width: 6px; }
 
     .indicator-fill {
       height: 100%;
@@ -624,8 +628,7 @@
         </span><br/>
         or a Million Dollars
       </h1>
-      <p class="hero-desc">Real advice from real students — affordable, judgment-free, and built for every kind of applicant.</p>
-      <div class="hero-actions">
+      <p class="hero-desc">And that's why we're here to help!<br/>We connect high schooler with student advisors from their dream school(s), giving you real advice tailored to your goals — without spending thousands of dollars on coporate admission consultants.</p><div class="hero-actions">
         <a href="book.html" class="btn btn-gold">Find an advisor</a>
         <a href="#our-process" class="btn btn-outline">Our Process</a>
       </div>
@@ -635,7 +638,7 @@
       <div class="carousel-label" id="carousel-label">We have Advisors from&hellip;</div>
       <div class="carousel">
         <div class="carousel-track">
-          <div class="carousel-slide active">
+          <div class="carousel-slide active slide-right">
             <img src="Harvard.jpg" alt="Harvard" />
             <div class="carousel-caption"><strong>Harvard University</strong> (Lowell House)</div>
           </div>
@@ -646,7 +649,6 @@
           <div class="carousel-slide">
             <img src="NYU.jpeg" alt="NYU" />
             <div class="carousel-caption"><strong>New York University</strong> (Washington Square Park)</div>
-
           </div>
           <div class="carousel-slide">
             <img src="Tufts.png" alt="Tufts" />
@@ -667,6 +669,11 @@
           <div class="carousel-slide">
             <img src="Clemson.jpg" alt="Clemson" />
             <div class="carousel-caption"><strong>Clemson University</strong> (Tillman Hall)</div>
+          </div>
+          <div class="carousel-slide">
+            <div style="width:100%; height:380px; background:var(--cream); display:flex; align-items:center; justify-content:center;">
+              <span style="font-family:'DM Serif Display',serif; font-size:clamp(1.6rem,4vw,2.6rem); color:var(--navy); letter-spacing:-0.02em;">...and many more!</span>
+            </div>
           </div>
         </div>
         <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#8592;</button>
@@ -863,54 +870,53 @@
     const indicatorContainer = document.getElementById('indicators');
     const carouselLabel = document.getElementById('carousel-label');
 
-    // Indices 0 (Harvard) and 1 (Yale) → "We have Advisors from…"
-    // All others → "but also from…"
     const prestigeSet = new Set([0, 1]);
+    const hideLabel = new Set([8]);
 
     let current = 0;
 
     slides.forEach((_, i) => {
       const ind = document.createElement('div');
-      ind.className = 'indicator ' + (i === 0 ? 'active' : 'upcoming');
+      ind.className = 'indicator';
       ind.innerHTML = '<div class="indicator-fill"></div>';
-      ind.addEventListener('click', () => goToSlide(i));
+      ind.addEventListener('click', () => goToSlide(i, i > current ? 1 : -1));
       indicatorContainer.appendChild(ind);
     });
 
     function getIndicators() { return document.querySelectorAll('.indicator'); }
 
-   function updateIndicators(index) {
-  getIndicators().forEach((ind, i) => {
-    ind.className = 'indicator';
-    if (i === index) {
-      ind.classList.add('active');
-      ind.querySelector('.indicator-fill').style.cssText = 'width:100%; background:white;';
-    } else {
-      ind.classList.add('upcoming');
-      ind.querySelector('.indicator-fill').style.cssText = 'width:0%; background:white;';
+    function updateIndicators(index) {
+      getIndicators().forEach((ind, i) => {
+        ind.querySelector('.indicator-fill').style.cssText =
+          i === index ? 'width:100%; background:white;' : 'width:0%; background:white;';
+      });
     }
-  });
-}
+
     function updateLabel(index) {
       carouselLabel.style.opacity = '0';
       setTimeout(() => {
-        carouselLabel.innerHTML = prestigeSet.has(index)
-          ? 'We have Advisors from&hellip;'
-          : 'but also from&hellip;';
+        if (hideLabel.has(index)) {
+          carouselLabel.style.visibility = 'hidden';
+        } else {
+          carouselLabel.style.visibility = 'visible';
+          carouselLabel.innerHTML = prestigeSet.has(index)
+            ? 'We have Advisors from&hellip;'
+            : 'but also from&hellip;';
+        }
         carouselLabel.style.opacity = '1';
       }, 200);
     }
 
-    function goToSlide(n) {
+    function goToSlide(n, dir) {
       if (slides.length === 0) return;
-      slides[current].classList.remove('active');
+      slides[current].classList.remove('active', 'slide-right', 'slide-left');
       current = (n + slides.length) % slides.length;
-      slides[current].classList.add('active');
+      slides[current].classList.add('active', dir >= 0 ? 'slide-right' : 'slide-left');
       updateIndicators(current);
       updateLabel(current);
     }
 
-    function moveCarousel(dir) { goToSlide(current + dir); }
+    function moveCarousel(dir) { goToSlide(current + dir, dir); }
 
     updateIndicators(0);
     updateLabel(0);
